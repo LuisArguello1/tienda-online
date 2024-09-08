@@ -359,6 +359,7 @@
   color: #ddebf0;
   text-align: center;
   text-transform: uppercase;
+  /* border: 2px solid white; */
 }
 
 #clip {
@@ -536,6 +537,12 @@
   height: 50px;
 }
 @media (width < 1580px) {
+  .titulo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    ;
+  }
   .contenedor-pago-compra {
     top: 0;
     right: 0;
@@ -552,10 +559,9 @@
     color: white;
     position: fixed;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: top;
     align-items: center;
-    flex-wrap: wrap;
   }
   .contenedorTarjeta {
     width: 100%;
@@ -574,7 +580,7 @@
     align-items: center;
   }
   .contenedor-formulario {
-    width: 80%;
+    width: 100%;
     height: 60vh;
     padding: 5px;
     display: flex;
@@ -582,9 +588,6 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
-  }
-  .flip-card {
-    display: none;
   }
   .salir1 {
     width: 100%;
@@ -594,6 +597,7 @@
     justify-content: left;
     align-items: start;
     margin-left: 30px;
+    /* border: 1px solid white; */
   }
   .salir2 {
     cursor: pointer;
@@ -624,7 +628,7 @@
       Helvetica, Arial, sans-serif;
   }
 }
-@media (480px <= width < 1000px) {
+@media (700px <= width < 1000px) {
   .contenedor-pago-compra {
     top: 0;
     right: 0;
@@ -725,7 +729,7 @@
       Helvetica, Arial, sans-serif;
   }
 }
-@media (width <= 480px) {
+@media (width <= 700px) {
   .contenedor-pago-compra {
     top: 0;
     right: 0;
@@ -745,7 +749,7 @@
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    flex-wrap: wrap;
+    margin: 0;
   }
   .contenedorTarjeta {
     width: 100%;
@@ -759,19 +763,23 @@
     width: 100%;
     height: 60vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    /* overflow-y: auto; */
+    box-sizing: content-box;
   }
   .contenedor-formulario {
     width: 80%;
-    height: 60vh;
+    height: 80vh;
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2em;
+    overflow-y: auto;
   }
   .flip-card {
     display: none;
@@ -825,5 +833,22 @@
     transition-duration: 0.3s;
     font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
       Helvetica, Arial, sans-serif;
+  }
+  .button2 {
+    cursor: pointer;
+    position: relative;
+    width: 9em;
+    height: 4em;
+    outline: none;
+    transition: 0.1s;
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ddebf0;
+    text-align: center;
+    text-transform: uppercase;
+    /* border: 2px solid white; */
+    margin-bottom: 20px;
   }
 }
