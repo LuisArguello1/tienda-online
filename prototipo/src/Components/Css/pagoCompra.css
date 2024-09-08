@@ -49,12 +49,13 @@
 .contenedorDatosSeguros {
   /* border: 3px solid white; */
   
-  width: 50%;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 3em;
 }
 /* inputs delos datos de la tarjeta */
 /* From Uiverse.io by vinodjangid07 */
