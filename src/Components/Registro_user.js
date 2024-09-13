@@ -6,16 +6,12 @@ import React from "react";
 import click from "./Assets/click.svg";
 import salir from "./Assets/salir.svg";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import {useState } from "react";
 import Productos from "./Productos";
 
 
+
 const Registro_user = () => {
-
-
-
- 
-  
 
   //ventanas emergentes de inicio de sesion y registro
   const [MostarInicionSesion, setMostrarInicioSesion] = useState(false);
@@ -31,6 +27,7 @@ const Registro_user = () => {
   //campos de inicio de sesion
   const [NombreUsuario, setNombreUsuario] = useState("");
   const [ContrasenaUsuario, setContrasenaUsuario] = useState("");
+  const [UsuarioMostrar, setUsuarioMostrar] = useState("")
 
   //campos de registro de usuario
   const [NombreUsuarioRegistro, setNombreUsuarioRegistro] = useState("");
@@ -226,6 +223,10 @@ const Registro_user = () => {
     setListaProductos(lista)
   }, []);
 
+  useEffect(() => {
+    console.log("UsuarioMostrar actualizado: ", UsuarioMostrar)
+  }, [UsuarioMostrar])
+
   //validacion de datos
   const validarNombreUsuario = (nombre) =>
     /^[a-zA-Z\s]+$/.test(nombre) &&
@@ -337,6 +338,7 @@ const Registro_user = () => {
           },
         });
 
+        
         //se crea intancias de usuarios y se los almacenan en un array
         const user = new User(
           NombreUsuarioRegistro,
@@ -472,14 +474,16 @@ const Registro_user = () => {
           position: "top",
           icon: "success",
           title: "Excelente...",
-          text: "Ingresando..",
           width: "300px",
           customClass: {
             popup: "custom-swal",
           },
         });
-        
         compararDatosAdmisnistrativos()
+        
+        const mostrar = NombreUsuario
+        setUsuarioMostrar(mostrar)
+
 
         setNombreUsuario("");
         setContrasenaUsuario("");
@@ -500,6 +504,7 @@ const Registro_user = () => {
     }
   };
 
+
   return (
     <>
       {MostrarRegistro_user && (
@@ -507,46 +512,48 @@ const Registro_user = () => {
           {/* Ventana emergente de inicio de Sesion */}
           {MostarInicionSesion && (
             <div className="contenedor-inicionSesion">
-              <div className="Salir-ventana">
-                <img
-                  src={salir}
-                  alt="svg no encontrado"
-                  onClick={() => handleClickButton1(false)}
-                ></img>
-              </div>
-              <header className="encabezado-registro">Inicio de Sesion</header>
-              <p className="info-registro">
-                Ingrese con su usuario y contraseña{" "}
-                <img
-                  src={click}
-                  alt="svg no encontrado"
-                  className="svg-click"
-                ></img>
-              </p>
-              <div className="Contenedor_datos_usuario">
-                <input
-                  type="text"
-                  className="entrada-info-user"
-                  placeholder="Ingrese su usuario"
-                  value={NombreUsuario}
-                  onChange={(e) => llenarUsuario(e.target.value)}
-                  required
-                ></input>
-                <input
-                  type="password"
-                  className="entrada-info-user"
-                  placeholder="Contraseña"
-                  value={ContrasenaUsuario}
-                  onChange={(e) => llenarContrasena(e.target.value)}
-                  required
-                ></input>
-              </div>
-              <div className="contenedor-button">
-                <button className="button" onClick={() => rellenarDatos(false,true)}>
-                  <div className="blob1"></div>
-                  <div className="blob2"></div>
-                  <div className="inner">Ingresar</div>
-                </button>
+              <div className="background-inicioSesion">
+                <div className="Salir-ventana">
+                  <img
+                    src={salir}
+                    alt="svg no encontrado"
+                    onClick={() => handleClickButton1(false)}
+                  ></img>
+                </div>
+                <header className="encabezado-registro">Inicio de Sesion</header>
+                <p className="info-registro">
+                  Ingrese con su usuario y contraseña{" "}
+                  <img
+                    src={click}
+                    alt="svg no encontrado"
+                    className="svg-click"
+                  ></img>
+                </p>
+                <div className="Contenedor_datos_usuario">
+                  <input
+                    type="text"
+                    className="entrada-info-user"
+                    placeholder="Ingrese su usuario"
+                    value={NombreUsuario}
+                    onChange={(e) => llenarUsuario(e.target.value)}
+                    required
+                  ></input>
+                  <input
+                    type="password"
+                    className="entrada-info-user"
+                    placeholder="Contraseña"
+                    value={ContrasenaUsuario}
+                    onChange={(e) => llenarContrasena(e.target.value)}
+                    required
+                  ></input>
+                </div>
+                <div className="contenedor-button">
+                  <button className="button" onClick={() => rellenarDatos(false,true)}>
+                    <div className="blob1"></div>
+                    <div className="blob2"></div>
+                    <div className="inner">Ingresar</div>
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -554,54 +561,56 @@ const Registro_user = () => {
           {/* Ventana emergente de ragistro de usuario */}
           {MostrarRegistro && (
             <div className="contenedor-registro">
-              <div className="Salir-ventana">
-                <img
-                  src={salir}
-                  alt="svg no encontrado"
-                  onClick={() => handleClickButton2(false)}
-                ></img>
-              </div>
-              <header className="encabezado-registro">Registrarse</header>
-              <p className="info-registro">
-                Registre su usuario y contraseña{" "}
-                <img
-                  src={click}
-                  alt="svg no encontrado"
-                  className="svg-click"
-                ></img>
-              </p>
-              <div className="Contenedor_datos_usuario">
-                <input
-                  type="text"
-                  className="entrada-info-user"
-                  placeholder="Ingrese su usuario"
-                  value={NombreUsuarioRegistro}
-                  onChange={(e) => llenarUsuarioRegistro(e.target.value)}
-                  required
-                ></input>
-                <input
-                  type="number"
-                  className="entrada-info-user"
-                  placeholder="Cedula"
-                  value={CedulaUsuarioRegistro}
-                  onChange={(e) => llenarCedulaRegistro(e.target.value)}
-                  required
-                ></input>
-                <input
-                  type="password"
-                  className="entrada-info-user"
-                  placeholder="Contraseña"
-                  value={ContrasenaUsuarioRegistro}
-                  onChange={(e) => llenarContrasenaRegistro(e.target.value)}
-                  required
-                ></input>
-              </div>
-              <div className="contenedor-button">
-                <button className="button" onClick={() => almacenarDatosUser()}>
-                  <div className="blob1"></div>
-                  <div className="blob2"></div>
-                  <div className="inner">Registrarse</div>
-                </button>
+              <div className="background-registro">
+                <div className="Salir-ventana">
+                  <img
+                    src={salir}
+                    alt="svg no encontrado"
+                    onClick={() => handleClickButton2(false)}
+                  ></img>
+                </div>
+                <header className="encabezado-registro">Registrarse</header>
+                <p className="info-registro">
+                  Registre su usuario y contraseña{" "}
+                  <img
+                    src={click}
+                    alt="svg no encontrado"
+                    className="svg-click"
+                  ></img>
+                </p>
+                <div className="Contenedor_datos_usuario">
+                  <input
+                    type="text"
+                    className="entrada-info-user"
+                    placeholder="Ingrese su usuario"
+                    value={NombreUsuarioRegistro}
+                    onChange={(e) => llenarUsuarioRegistro(e.target.value)}
+                    required
+                  ></input>
+                  <input
+                    type="number"
+                    className="entrada-info-user"
+                    placeholder="Cedula"
+                    value={CedulaUsuarioRegistro}
+                    onChange={(e) => llenarCedulaRegistro(e.target.value)}
+                    required
+                  ></input>
+                  <input
+                    type="password"
+                    className="entrada-info-user"
+                    placeholder="Contraseña"
+                    value={ContrasenaUsuarioRegistro}
+                    onChange={(e) => llenarContrasenaRegistro(e.target.value)}
+                    required
+                  ></input>
+                </div>
+                <div className="contenedor-button">
+                  <button className="button" onClick={() => almacenarDatosUser()}>
+                    <div className="blob1"></div>
+                    <div className="blob2"></div>
+                    <div className="inner">Registrarse</div>
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -639,7 +648,7 @@ const Registro_user = () => {
         </div>
       )}
       {MostrarProductos && (
-        <Productos esAdmin={DatoAdministrativo} listaProductos ={ListaProductos}></Productos>
+        <Productos esAdmin={DatoAdministrativo} listaProductos ={ListaProductos} nombreUsuario={UsuarioMostrar}></Productos>
       )}
     </>
   );
