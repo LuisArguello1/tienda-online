@@ -677,7 +677,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 0.2em;
   }
   .salir1 {
     width: 100%;
