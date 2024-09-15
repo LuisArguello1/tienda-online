@@ -217,7 +217,7 @@ const Destino = ({
                     className="input"
                     name="input"
                     placeholder="Cod. Postal..."
-                    type="number"
+                    type="text"
                     value={CodigoPostal}
                     onChange={(e) => llenarCodigoPostal(e.target.value)}
                     required
