@@ -78,7 +78,6 @@ const Carrito_compras = ({
                 className="img-carrito"
               ></img>
             </div>
-            <div><strong>Productos seleccionado: </strong>{productosSeleccionados.length}</div>
 
             <img
               src={salir}
