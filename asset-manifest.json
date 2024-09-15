@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tienda-online/static/css/main.0fe39386.css",
-    "main.js": "/tienda-online/static/js/main.d3aa5f38.js",
+    "main.css": "/tienda-online/static/css/main.77eb576b.css",
+    "main.js": "/tienda-online/static/js/main.608859be.js",
     "static/media/pngwing.com.png": "/tienda-online/static/media/pngwing.com.7a81d3298066a260ab46.png",
     "static/media/magicpattern-wave-generator-1726341726039.png": "/tienda-online/static/media/magicpattern-wave-generator-1726341726039.e65a364e9730dab0c4be.png",
     "static/media/click.svg": "/tienda-online/static/media/click.eaa72f34d3a51e595115f21377557809.svg",
@@ -10,11 +10,11 @@
     "static/media/salir2.svg": "/tienda-online/static/media/salir2.0bcab2ebbdd0ca582a921d893934756c.svg",
     "static/media/shop.svg": "/tienda-online/static/media/shop.34359d569b90f522e6bbf535c51db67f.svg",
     "static/media/salir.svg": "/tienda-online/static/media/salir.f7f8b147a5f343b206c61e24e61fb81e.svg",
-    "main.0fe39386.css.map": "/tienda-online/static/css/main.0fe39386.css.map",
-    "main.d3aa5f38.js.map": "/tienda-online/static/js/main.d3aa5f38.js.map"
+    "main.77eb576b.css.map": "/tienda-online/static/css/main.77eb576b.css.map",
+    "main.608859be.js.map": "/tienda-online/static/js/main.608859be.js.map"
   },
   "entrypoints": [
-    "static/css/main.0fe39386.css",
-    "static/js/main.d3aa5f38.js"
+    "static/css/main.77eb576b.css",
+    "static/js/main.608859be.js"
   ]
 }
