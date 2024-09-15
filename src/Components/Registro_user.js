@@ -648,7 +648,7 @@ const Registro_user = () => {
         </div>
       )}
       {MostrarProductos && (
-        <Productos esAdmin={DatoAdministrativo} listaProductos ={ListaProductos} nombreUsuario={UsuarioMostrar}></Productos>
+        <Productos esAdmin={DatoAdministrativo} listaProductos ={ListaProductos} nombreUsuario={UsuarioMostrar} ListaUsuarios={ListaUsuarios}></Productos>
       )}
     </>
   );

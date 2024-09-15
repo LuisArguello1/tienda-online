@@ -6,7 +6,7 @@ import shop from "./Assets/shop.svg";
 import { useState } from "react";
 
 
-const Productos = ({ esAdmin, listaProductos,nombreUsuario}) => {
+const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
   const [OcutarInicio, setOcultarInicio] = useState(false);
   const [MostrarProductos, setMostrarProductos] = useState(true);
   const [MostrarNotificacion, setMostrarNotificacion] = useState(false);
@@ -92,6 +92,8 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario}) => {
                 ocultarCarrito={mostrarProductos}
                 productosSeleccionados={ProductosSeleccionados}
                 setProductosSeleccionados={setProductosSeleccionados}
+                ListaUsuarios={ListaUsuarios}
+                nombreUsuario={nombreUsuario}
               ></Carrito_compras>
             </div>
             <div className="contenedor-productos">

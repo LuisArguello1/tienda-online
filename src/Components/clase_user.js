@@ -3,6 +3,7 @@ class User{
         this.usuario = usuario
         this.cedula = cedula
         this.contrasena = contrasena
+        this.productoComprados = []
     }
     presentar(){
         return `Nombre: ${this.usuario}, Cedula: ${this.cedula}, Contraseña: ${this.contrasena}`

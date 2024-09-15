@@ -1,0 +1,155 @@
+.contenedor-factura{
+    z-index: 8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    color: black;
+}
+.contenedor-factura-scroll{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+.contenedor-btn{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+}
+.button-salir{
+    width: 10%;
+    height: 100%;
+    border: none;
+}
+.factura-productos{
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dotted black;
+}
+.factura-header{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.factura-logo{
+    width: 40%;
+    height: auto;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    padding: 10px 10px 20px 0px ;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.logo-posicion{
+    width: 100px;
+    height: 100px;
+}
+.factura-numero{
+    width: 30%;
+    height: auto;
+    font-size: 20px;
+    text-align: center;
+    padding: 12px ;
+}
+.datos-usuario-factura{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding-left: 30px;
+    gap:1em;
+}
+.datos-user{
+    width: 100%;
+    height: auto;
+    padding: 7px;
+    text-align: left;
+    gap: 5px;
+}
+.estructura-factura{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.encabezado-factura{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.enca-productos{
+    background-color: rgb(200, 200, 200);
+    width: 25%;
+    height: auto;
+    padding: 7px 0px;
+    text-align: center;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.productos-factura{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.producto-mapeo{
+    width: 25%;
+    height: auto;
+    padding: 7px 0px;
+    text-align: center;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.totales-factura{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+}
+.total-productos{
+    width: 40%;
+    height: auto;
+    padding: 5px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -110,7 +110,24 @@
   width: 20px;
   height: 20px;
 }
-
+.background-inicioSesion{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.background-registro{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
 /* despliege de inicio de sesion */
 .contenedor-inicionSesion {
   z-index: 4;
@@ -143,6 +160,7 @@
   align-items: center;
   gap: 10px;
   padding-bottom: 20px;
+  /* border: 3px solid black; */
 }
 .entrada-info-user {
   height: 25px;
@@ -160,6 +178,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.contenedor-button{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 3px solid black; */
 }
 /* Estilo de las alertas */
 

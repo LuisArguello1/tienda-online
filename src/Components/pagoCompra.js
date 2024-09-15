@@ -4,8 +4,9 @@ import "./Css/pagoCompra.css";
 import salir2 from "./Assets/salir2.svg";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import Destino from "./Destino";
 
-const PagoCompra = ({ mostrarPago, setMostrarPago }) => {
+const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccionados,ListaUsuarios,nombreUsuario,Total,Subtotal,Iva }) => {
   const palabras_prohibidas = [
     "puto",
     "mierda",
@@ -52,6 +53,7 @@ const PagoCompra = ({ mostrarPago, setMostrarPago }) => {
     "hembro",
     "coca",
   ];
+  const [DestinoMostrar, setDestinoMostrar] = useState(false)
   const [NumeroTarjeta, setNumeroTarjeta] = useState("");
   const [FechaExpiracion, setFechaExpiracion] = useState("");
   const [CodigoSeguridad, setCodigoSeguridad] = useState("");
@@ -134,17 +136,8 @@ const PagoCompra = ({ mostrarPago, setMostrarPago }) => {
       validarCodigoPostal(CodigoPostal) &&
       validarCiudad(Ciudad)
     ) {
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Excelente - Compra Realizada",
-        text: "Muchas gracias por su compra, sus articulos les llegara pronto...",
-        width: "300px",
-        customClass: {
-          popup: "custom-swal",
-        },
-      });
-      setMostrarPago(false);
+      setDestinoMostrar(true)
+
     } else if (!validarNumeroTarjeta(NumeroTarjeta)) {
       Swal.fire({
         position: "top",
@@ -464,6 +457,9 @@ const PagoCompra = ({ mostrarPago, setMostrarPago }) => {
             </div>
           </div>
         </div>
+      )}
+      {DestinoMostrar && (
+        <Destino setMostrarPago={setMostrarPago} DestinoMostrar={DestinoMostrar} setDestinoMostrar={setDestinoMostrar} EnviarTotal={EnviarTotal} productosSeleccionados={productosSeleccionados} ListaUsuarios={ListaUsuarios} nombreUsuario={nombreUsuario} Total={Total} Subtotal={Subtotal} Iva = {Iva}></Destino>
       )}
     </>
   );
