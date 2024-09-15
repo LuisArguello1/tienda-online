@@ -11,12 +11,12 @@ const Carrito_compras = ({
   productosSeleccionados,
   setProductosSeleccionados,
   ListaUsuarios,
-  nombreUsuario
+  nombreUsuario,
 }) => {
   const [Subtotal, setSubtotal] = useState(0);
   const [Iva, setIva] = useState(0);
   const [Total, setTotal] = useState(0);
-  const [EnviarTotal, setEnviarTotal] = useState(0)
+  const [EnviarTotal, setEnviarTotal] = useState(0);
   const [MostrarPago, setMostrarPago] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Carrito_compras = ({
     const iva = total * (porcIva / 100);
     setIva(iva.toFixed(2));
 
-    setEnviarTotal((total + iva).toFixed(2))
+    setEnviarTotal((total + iva).toFixed(2));
     setTotal((total + iva).toFixed(2));
   }, [productosSeleccionados]);
 
@@ -65,7 +65,6 @@ const Carrito_compras = ({
     setProductosSeleccionados(nuevaListaProductos);
   }
 
-
   return (
     <>
       {OcultarCarrito && (
@@ -79,6 +78,7 @@ const Carrito_compras = ({
                 className="img-carrito"
               ></img>
             </div>
+            <div><strong>Productos seleccionado: </strong>{productosSeleccionados.length}</div>
 
             <img
               src={salir}
@@ -180,7 +180,7 @@ const Carrito_compras = ({
           nombreUsuario={nombreUsuario}
           Total={Total}
           Subtotal={Subtotal}
-          Iva = {Iva}
+          Iva={Iva}
         />
       )}
     </>

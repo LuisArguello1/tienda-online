@@ -1,8 +1,9 @@
 class User{
-    constructor(usuario,cedula,contrasena){
+    constructor(usuario,cedula,contrasena,totalCompra){
         this.usuario = usuario
         this.cedula = cedula
         this.contrasena = contrasena
+        this.totalCompra = totalCompra
         this.productoComprados = []
     }
     presentar(){

@@ -22,7 +22,11 @@ const Registro_user = () => {
   const [ListaProductos, setListaProductos] = useState([])
 
   //Lista de usurios registrados
-  const [ListaUsuarios, setListaUsuarios] = useState([]);
+
+  const [ListaUsuarios, setListaUsuarios] = useState(() => {
+    const savedUsers = localStorage.getItem('ListaUsuarios');
+    return savedUsers ? JSON.parse(savedUsers) : [];
+  });
 
   //campos de inicio de sesion
   const [NombreUsuario, setNombreUsuario] = useState("");
@@ -187,7 +191,7 @@ const Registro_user = () => {
       4.19,
       20,
       1,
-      "https://www.tia.com.ec/media/catalog/product/2/5/259846000_1.png_1724803291607.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSetcoSUXntqXmYwr6JhMcduioR5rv9IjV_OQ&s"
     )
     let producto21 = new Producto(
       "SOPA DE POLLO MAGGI 60 G POLLO",
@@ -213,7 +217,7 @@ const Registro_user = () => {
     let producto24 = new Producto(
       "CREMA DE AVELLANA C/CACAO NUTELLA 350 G",
       5.99,
-      23,
+      24,
       1,
       "https://www.tia.com.ec/media/catalog/product/2/5/250951000_1.png_1725579111620.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
     )
@@ -222,6 +226,11 @@ const Registro_user = () => {
   
     setListaProductos(lista)
   }, []);
+
+  useEffect(() => {
+    // Actualizar localStorage cuando ListaUsuarios cambie
+    localStorage.setItem('ListaUsuarios', JSON.stringify(ListaUsuarios));
+  }, [ListaUsuarios]);
 
   useEffect(() => {
     console.log("UsuarioMostrar actualizado: ", UsuarioMostrar)
@@ -343,12 +352,15 @@ const Registro_user = () => {
         const user = new User(
           NombreUsuarioRegistro,
           CedulaUsuarioRegistro,
-          ContrasenaUsuarioRegistro
+          ContrasenaUsuarioRegistro,
+          [],
+          0
         );
         
         const updatedUsers = [...ListaUsuarios, user];
-        localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
         setListaUsuarios(updatedUsers);
+        
+        localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
 
         //Se imprime por consola los usuarios registrados
         console.log(updatedUsers)

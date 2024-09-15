@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Css/factura.css";
 import logoEmpresa from "./Img/pngwing.com.png";
-import salir from "./Assets/salir.svg"
+import salir from "./Assets/salir.svg";
 const Factura = ({
   MostarFactura,
   setMostrarFactura,
@@ -13,35 +13,39 @@ const Factura = ({
   Subtotal,
   Iva,
   CargoEnvio,
-  TotalCargo
+  TotalCargo,
 }) => {
-    const [Usuario, setUsuario] = useState("")
-    const [Cedula, setCedula] = useState("")
+  const [Usuario, setUsuario] = useState("");
+  const [Cedula, setCedula] = useState("");
 
-    useEffect(() => {
-        console.log(ListaUsuarios);
-        for (let i = 0; i < ListaUsuarios.length; i++) {
-            if (ListaUsuarios[i].usuario === nombreUsuario) {
-                setUsuario(ListaUsuarios[i].usuario)
-                setCedula(ListaUsuarios[i].cedula)
-                ListaUsuarios[i].productoComprados = productosSeleccionados
-                console.log(ListaUsuarios[i].productoComprados)
-            }
-        }
-    }, []);
+  useEffect(() => {
+    let listaUsuariosActualizada = JSON.parse(localStorage.getItem('usuarios')) || [];
+    
+    for (let i = 0; i < listaUsuariosActualizada.length; i++) {
+      if (listaUsuariosActualizada[i].usuario === nombreUsuario) {
+        listaUsuariosActualizada[i].productoComprados = productosSeleccionados;
+        listaUsuariosActualizada[i].totalCompra = TotalCargo;
+        setUsuario(listaUsuariosActualizada[i].usuario);
+        setCedula(listaUsuariosActualizada[i].cedula);
+        break;
+      }
+    }
+
+    localStorage.setItem('usuarios', JSON.stringify(listaUsuariosActualizada));
+  }, [nombreUsuario, productosSeleccionados, TotalCargo]);
 
   return (
     <>
       {MostarFactura && (
         <div className="contenedor-factura">
-            <div className="contenedor-btn">
-              <button
-                className="button-salir"
-                onClick={() => setMostrarFactura(false)}
-              >
-                <img src={salir} alt="salir"></img>
-              </button>
-            </div>
+          <div className="contenedor-btn">
+            <button
+              className="button-salir"
+              onClick={() => setMostrarFactura(false)}
+            >
+              <img src={salir} alt="salir"></img>
+            </button>
+          </div>
           <div className="contenedor-factura-scroll">
             <div className="factura-productos">
               <div className="factura-header">
@@ -52,15 +56,21 @@ const Factura = ({
                     alt="logo-empresa"
                   ></img>
                 </div>
-                <div className="factura-numero"><strong>Factura:</strong> #1</div>
+                <div className="factura-numero">
+                  <strong>Factura:</strong> #1
+                </div>
               </div>
               <div className="datos-usuario-factura">
-                <div className="datos-user"><strong>Enviar a:</strong></div>
                 <div className="datos-user">
-                  <strong>Nombre Usuario:</strong>{Usuario}
+                  <strong>Enviar a:</strong>
                 </div>
                 <div className="datos-user">
-                  <strong>Cedula Usuario:</strong>{Cedula}
+                  <strong>Nombre Usuario:</strong>
+                  {Usuario}
+                </div>
+                <div className="datos-user">
+                  <strong>Cedula Usuario:</strong>
+                  {Cedula}
                 </div>
               </div>
               <div className="estructura-factura">

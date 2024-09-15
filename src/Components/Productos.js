@@ -1,6 +1,7 @@
 import React from "react";
 import Registro_user from "./Registro_user";
 import Carrito_compras from "./Carrito_compras";
+import Informes from "./Informes";
 import "./Css/productos.css";
 import shop from "./Assets/shop.svg";
 import { useState } from "react";
@@ -13,7 +14,11 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
   const [MostrarTotal, setMostrarTotal] = useState(false);
   const [ProductosSeleccionados, setProductosSeleccionados] = useState([]);
   const [MostrarBolida, setMostrarBolita] = useState(null);
+  const [MostrarInformes, setMostrarInformes] = useState(false)
 
+  function informes(){
+    setMostrarInformes(true)
+  }
 
   function handleClickButtonSesionOcultar(estado1, estado2) {
     setOcultarInicio(estado1);
@@ -61,7 +66,7 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
               <div className="contenedor-opciones">
                 {esAdmin && (
                   <>
-                    <button className="button-admin">Informes</button>
+                    <button className="button-admin" onClick={() => informes()}>Informes</button>
                     <button className="button-admin">Add Producto</button>
                   </>
                 )}
@@ -105,7 +110,7 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
                     <div className="notiProducto">
                       {MostrarBolida === producto.idProducto && (
                         <div className="bolita">
-                          <div className="noti">✔</div>
+                          <div className="noti">Agregado</div>
                         </div>
                       )}
                     </div>
@@ -153,7 +158,7 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
                     <div className="notiProducto">
                       {MostrarBolida === producto.idProducto && (
                         <div className="bolita">
-                          <div className="noti">✔</div>
+                          <div className="noti">Agregado</div>
                         </div>
                       )}
                     </div>
@@ -198,6 +203,9 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
             </div>
           </div>
         </>
+      )}
+      {MostrarInformes && (
+        <Informes MostrarInformes={MostrarInformes} setMostrarInformes={setMostrarInformes} ListaUsuarios={ListaUsuarios}></Informes>
       )}
     </>
   );
