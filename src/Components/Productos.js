@@ -1,23 +1,29 @@
 import React from "react";
 import Registro_user from "./Registro_user";
 import Carrito_compras from "./Carrito_compras";
+import DevolucionUser from "./DevolucionUser";
 import Informes from "./Informes";
 import "./Css/productos.css";
 import shop from "./Assets/shop.svg";
 import { useState } from "react";
 
-
-const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
+const Productos = ({
+  esAdmin,
+  listaProductos,
+  nombreUsuario,
+  ListaUsuarios,
+}) => {
   const [OcutarInicio, setOcultarInicio] = useState(false);
   const [MostrarProductos, setMostrarProductos] = useState(true);
   const [MostrarNotificacion, setMostrarNotificacion] = useState(false);
   const [MostrarTotal, setMostrarTotal] = useState(false);
   const [ProductosSeleccionados, setProductosSeleccionados] = useState([]);
   const [MostrarBolida, setMostrarBolita] = useState(null);
-  const [MostrarInformes, setMostrarInformes] = useState(false)
+  const [MostrarInformes, setMostrarInformes] = useState(false);
+  const [MotrarDevolucionUser, setMostrarDevolucionUser] = useState(false)
 
-  function informes(){
-    setMostrarInformes(true)
+  function informes() {
+    setMostrarInformes(true);
   }
 
   function handleClickButtonSesionOcultar(estado1, estado2) {
@@ -61,15 +67,20 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
           <div className="contenedor213">
             <div className="encabezado-productos">
               <div className="contenedor-logo">
-                <p className="logo-producto">Super <span>mercado</span></p>
+                <p className="logo-producto">
+                  Super <span>mercado</span>
+                </p>
               </div>
               <div className="contenedor-opciones">
                 {esAdmin && (
                   <>
-                    <button className="button-admin" onClick={() => informes()}>Informes</button>
+                    <button className="button-admin" onClick={() => informes()}>
+                      Informes
+                    </button>
                     <button className="button-admin">Add Producto</button>
                   </>
                 )}
+                <button class="button-devolucion" onClick={() => setMostrarDevolucionUser(true)}>Devolucion</button>
                 <div
                   className="Carrito-compras"
                   onClick={() => mostrarProductos(true)}
@@ -77,7 +88,9 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
                   {ProductosSeleccionados.length === 0
                     ? ""
                     : MostrarNotificacion && (
-                        <div className="notificacion">{ProductosSeleccionados.length}</div>
+                        <div className="notificacion">
+                          {ProductosSeleccionados.length}
+                        </div>
                       )}
                   <img
                     className="shop-productos"
@@ -102,7 +115,10 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
               ></Carrito_compras>
             </div>
             <div className="contenedor-productos">
-              <div className="titulo-user"><div className="nombreUsuario">  Bienvenido, </div>{nombreUsuario}</div>
+              <div className="titulo-user">
+                <div className="nombreUsuario"> Bienvenido, </div>
+                {nombreUsuario}
+              </div>
               <div className="productosDesct">
                 <div className="titulo-dest">Productos destacados</div>
                 {listaProductos.slice(0, 4).map((producto) => (
@@ -153,7 +169,7 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
                 ))}
               </div>
               <div className="productos-venta">
-                {listaProductos.map((producto) => (
+                {listaProductos.slice(4).map((producto) => (
                   <div className="card" key={producto.idProducto}>
                     <div className="notiProducto">
                       {MostrarBolida === producto.idProducto && (
@@ -205,7 +221,15 @@ const Productos = ({ esAdmin, listaProductos,nombreUsuario,ListaUsuarios}) => {
         </>
       )}
       {MostrarInformes && (
-        <Informes MostrarInformes={MostrarInformes} setMostrarInformes={setMostrarInformes} ListaUsuarios={ListaUsuarios}></Informes>
+        <Informes
+          MostrarInformes={MostrarInformes}
+          setMostrarInformes={setMostrarInformes}
+          ListaUsuarios={ListaUsuarios}
+          nombreUsuario={nombreUsuario}
+        ></Informes>
+      )}
+      {MotrarDevolucionUser && (
+        <DevolucionUser MotrarDevolucionUser={MotrarDevolucionUser} setMostrarDevolucionUser={setMostrarDevolucionUser} nombreUsuario={nombreUsuario}></DevolucionUser>
       )}
     </>
   );

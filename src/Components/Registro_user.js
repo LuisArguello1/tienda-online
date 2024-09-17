@@ -45,7 +45,7 @@ const Registro_user = () => {
 
     // Añadir credenciales administrativas si no hay usuarios
     if (usuarios.length === 0) {
-      const adminUser = new User("Admin-01", "1111177777", "Admin001");
+      const adminUser = new User("Admin-01", "1111177777","Admin001",0,"No existe solicitud");
       const updatedUsers = [...usuarios, adminUser];
       localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
       setListaUsuarios(updatedUsers);
@@ -232,9 +232,6 @@ const Registro_user = () => {
     localStorage.setItem('ListaUsuarios', JSON.stringify(ListaUsuarios));
   }, [ListaUsuarios]);
 
-  useEffect(() => {
-    console.log("UsuarioMostrar actualizado: ", UsuarioMostrar)
-  }, [UsuarioMostrar])
 
   //validacion de datos
   const validarNombreUsuario = (nombre) =>
@@ -353,17 +350,14 @@ const Registro_user = () => {
           NombreUsuarioRegistro,
           CedulaUsuarioRegistro,
           ContrasenaUsuarioRegistro,
-          [],
-          0
+          0,
+          "No existe solicitud",
         );
         
         const updatedUsers = [...ListaUsuarios, user];
         setListaUsuarios(updatedUsers);
         
         localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
-
-        //Se imprime por consola los usuarios registrados
-        console.log(updatedUsers)
 
         //se limpian los inputs
         setNombreUsuarioRegistro("");
