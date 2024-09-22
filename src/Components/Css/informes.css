@@ -16,7 +16,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.50em;
+  gap: 0.5em;
+  animation: desplazarBottom 1s ease forwards;
+}
+@keyframes desplazarBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 .contenedor-btn-salir {
   margin-top: 12px;
@@ -127,13 +136,13 @@
   width: 80px;
   height: 80px;
 }
-.contenedor-btn-informes{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+.contenedor-btn-informes {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 /* From Uiverse.io by Custyyyy */
 .button-name {
@@ -184,6 +193,17 @@
 }
 
 @media (width <= 700px) {
+  .contenedor-informes-padre {
+    animation: desplazarBottom 1s ease forwards;
+  }
+  @keyframes desplazarBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
   .datos-user-informe {
     width: 100%;
     height: 50%;
@@ -194,6 +214,7 @@
     gap: 0.25em;
     background-color: rgb(225, 225, 225);
   }
+
   .productos-comprado-user {
     width: 100%;
     height: 50%;
@@ -217,43 +238,43 @@
     align-items: center;
     gap: 0.5em;
   }
-  .contenedor-btn-informes{
+  .contenedor-btn-informes {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-}
-/* From Uiverse.io by Custyyyy */
-.button-name {
-  align-items: center;
-  appearance: none;
-  background-color: #fcfcfd;
-  border-radius: 4px;
-  border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
-    rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #36395a;
-  cursor: pointer;
-  display: inline-flex;
-  height: 35px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 12px;
-  padding-right: 12px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow 0.15s, transform 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow, transform;
-  font-size: 14px;
-}
+  }
+  /* From Uiverse.io by Custyyyy */
+  .button-name {
+    align-items: center;
+    appearance: none;
+    background-color: #fcfcfd;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+      rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395a;
+    cursor: pointer;
+    display: inline-flex;
+    height: 35px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 14px;
+  }
 }

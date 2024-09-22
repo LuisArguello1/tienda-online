@@ -4,7 +4,9 @@ import Carrito_compras from "./Carrito_compras";
 import DevolucionUser from "./DevolucionUser";
 import Informes from "./Informes";
 import "./Css/productos.css";
-import shop from "./Assets/shop.svg";
+import shopWhite from "./Assets/shopWhite.svg";
+import salir3 from "./Assets/salir3.svg";
+import list from "./Assets/list.svg";
 import { useState } from "react";
 
 const Productos = ({
@@ -20,7 +22,8 @@ const Productos = ({
   const [ProductosSeleccionados, setProductosSeleccionados] = useState([]);
   const [MostrarBolida, setMostrarBolita] = useState(null);
   const [MostrarInformes, setMostrarInformes] = useState(false);
-  const [MotrarDevolucionUser, setMostrarDevolucionUser] = useState(false)
+  const [MotrarDevolucionUser, setMostrarDevolucionUser] = useState(false);
+  const [MostrarList, setMostrarList] = useState(false);
 
   function informes() {
     setMostrarInformes(true);
@@ -56,6 +59,10 @@ const Productos = ({
     setMostrarTotal(estado);
   }
 
+  function mostrarHeader(estado) {
+    setMostrarList(estado);
+  }
+
   return (
     <>
       {/* Se muestra la pantalla de inicio */}
@@ -65,22 +72,32 @@ const Productos = ({
       {MostrarProductos && (
         <>
           <div className="contenedor213">
-            <div className="encabezado-productos">
+            <div
+              className={`encabezado-productos ${MostrarList ? "mostrar" : ""}`}
+            >
+              <div className="salirHeader" onClick={() => mostrarHeader(false)}>
+                <img src={salir3} alt="salir" className="salirImgHeader"></img>
+              </div>
               <div className="contenedor-logo">
                 <p className="logo-producto">
-                  Super <span>mercado</span>
+                  Super <div className="enfasis">mercado</div>
                 </p>
               </div>
               <div className="contenedor-opciones">
                 {esAdmin && (
                   <>
-                    <button className="button-admin" onClick={() => informes()}>
+                    <div className="button-admin" onClick={() => informes()}>
                       Informes
-                    </button>
-                    <button className="button-admin">Add Producto</button>
+                    </div>
+                    <div className="button-admin">Add Producto</div>
                   </>
                 )}
-                <button class="button-devolucion" onClick={() => setMostrarDevolucionUser(true)}>Devolucion</button>
+                <div
+                  className="button-devolucion"
+                  onClick={() => setMostrarDevolucionUser(true)}
+                >
+                  Devolucion
+                </div>
                 <div
                   className="Carrito-compras"
                   onClick={() => mostrarProductos(true)}
@@ -94,16 +111,16 @@ const Productos = ({
                       )}
                   <img
                     className="shop-productos"
-                    src={shop}
+                    src={shopWhite}
                     alt="svg - no encontrado"
                   ></img>
                 </div>
-                <button
+                <div
                   className="Cerrar-Sesion"
                   onClick={() => handleClickButtonSesionOcultar(true, false)}
                 >
                   <span>Cerrar Sesion</span>
-                </button>
+                </div>
               </div>
               <Carrito_compras
                 OcultarCarrito={MostrarTotal}
@@ -114,8 +131,12 @@ const Productos = ({
                 nombreUsuario={nombreUsuario}
               ></Carrito_compras>
             </div>
+
             <div className="contenedor-productos">
               <div className="titulo-user">
+                <div className="listMenu" onClick={() => mostrarHeader(true)}>
+                  <img className="menu" src={list} alt="menu"></img>
+                </div>
                 <div className="nombreUsuario"> Bienvenido, </div>
                 {nombreUsuario}
               </div>
@@ -229,7 +250,11 @@ const Productos = ({
         ></Informes>
       )}
       {MotrarDevolucionUser && (
-        <DevolucionUser MotrarDevolucionUser={MotrarDevolucionUser} setMostrarDevolucionUser={setMostrarDevolucionUser} nombreUsuario={nombreUsuario}></DevolucionUser>
+        <DevolucionUser
+          MotrarDevolucionUser={MotrarDevolucionUser}
+          setMostrarDevolucionUser={setMostrarDevolucionUser}
+          nombreUsuario={nombreUsuario}
+        ></DevolucionUser>
       )}
     </>
   );

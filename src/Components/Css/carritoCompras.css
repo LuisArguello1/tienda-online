@@ -6,13 +6,24 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), -700px 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), -700px 0 50px rgba(0, 0, 0, 0.5);
   justify-content: top;
   align-items: center;
   background-color: white;
   position: fixed;
   overflow-y: auto; /* Permitir desplazamiento vertical */
+  animation: desplazarleft2 1.2s ease forwards;
 }
+
+@keyframes desplazarleft2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .encabezado-carrito {
   box-sizing: border-box;
   padding: 20px 50px;
@@ -291,6 +302,15 @@
     background-color: white;
     position: fixed;
     overflow-y: auto; /* Permitir desplazamiento vertical */
+    animation: desplazarleft2 1.2s ease forwards;
+  }
+  @keyframes desplazarleft2 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
   }
 }
 @media (480px <= width < 1000px) {
@@ -307,6 +327,15 @@
     background-color: white;
     position: fixed;
     overflow-y: auto; /* Permitir desplazamiento vertical */
+    animation: desplazarleft2 1.2s ease forwards;
+  }
+  @keyframes desplazarleft2 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
   }
   .img-producto {
     width: 60%;
@@ -331,7 +360,16 @@
     align-items: center;
     background-color: white;
     position: fixed;
+    animation: desplazarleft2 1.2s ease forwards;
     overflow-y: auto; /* Permitir desplazamiento vertical */
+  }
+  @keyframes desplazarleft2 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
   }
   .img-producto {
     width: 60%;
@@ -352,7 +390,7 @@
     height: auto;
     display: flex;
     flex-direction: column-reverse;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     border-bottom: 2px solid rgba(172, 171, 171);
   }
