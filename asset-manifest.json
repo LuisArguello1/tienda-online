@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tienda-online/static/css/main.eeab9c57.css",
-    "main.js": "/tienda-online/static/js/main.a0fdd921.js",
+    "main.css": "/tienda-online/static/css/main.db0bb752.css",
+    "main.js": "/tienda-online/static/js/main.6ee72658.js",
     "static/media/pngwing.com.png": "/tienda-online/static/media/pngwing.com.7a81d3298066a260ab46.png",
     "static/media/magicpattern-wave-generator-1726341726039.png": "/tienda-online/static/media/magicpattern-wave-generator-1726341726039.e65a364e9730dab0c4be.png",
     "static/media/click.svg": "/tienda-online/static/media/click.eaa72f34d3a51e595115f21377557809.svg",
@@ -9,12 +9,15 @@
     "static/media/eliminar.svg": "/tienda-online/static/media/eliminar.913e68470be93aac6d845f0fb9f01d59.svg",
     "static/media/salir2.svg": "/tienda-online/static/media/salir2.0bcab2ebbdd0ca582a921d893934756c.svg",
     "static/media/shop.svg": "/tienda-online/static/media/shop.34359d569b90f522e6bbf535c51db67f.svg",
+    "static/media/shopWhite.svg": "/tienda-online/static/media/shopWhite.28c010c62c565c43a816876b779e1914.svg",
+    "static/media/list.svg": "/tienda-online/static/media/list.77efebcb049f9ba5c13564148cb56f58.svg",
     "static/media/salir.svg": "/tienda-online/static/media/salir.f7f8b147a5f343b206c61e24e61fb81e.svg",
-    "main.eeab9c57.css.map": "/tienda-online/static/css/main.eeab9c57.css.map",
-    "main.a0fdd921.js.map": "/tienda-online/static/js/main.a0fdd921.js.map"
+    "static/media/salir3.svg": "/tienda-online/static/media/salir3.d46a378e4b5749a40f5857ef30e5d7e4.svg",
+    "main.db0bb752.css.map": "/tienda-online/static/css/main.db0bb752.css.map",
+    "main.6ee72658.js.map": "/tienda-online/static/js/main.6ee72658.js.map"
   },
   "entrypoints": [
-    "static/css/main.eeab9c57.css",
-    "static/js/main.a0fdd921.js"
+    "static/css/main.db0bb752.css",
+    "static/js/main.6ee72658.js"
   ]
 }
