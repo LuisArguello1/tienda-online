@@ -46,11 +46,17 @@
   color: white;
 }
 .salir-button {
-  width: 15%;
+  width: 20%;
   height: 100%;
   border-radius: 30px;
   background-color: transparent;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
 }
 .salir21 {
   width: 40px;
@@ -102,7 +108,9 @@
   background: #e8e8e8;
   width: fit-content;
 }
-.coolinput input[type="text"].input {
+.coolinput input[type="text"].input,
+.coolinput input[type="email"].input,
+.coolinput input[type="number"].input {
   padding: 11px 10px;
   font-size: 0.75rem;
   border: 2px #000000 solid;

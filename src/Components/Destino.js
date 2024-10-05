@@ -20,8 +20,10 @@ const Destino = ({
   const [TotalCargo, setTotalCargo] = useState(0);
   const [CargoEnvio, setCargoEnvio] = useState(0);
   const [Direccion, setDireccion] = useState("");
+  const [Correo, setCorreo] = useState("");
   const [CodigoPostal, setCodigoPostal] = useState("");
   const [MostarFactura, setMostrarFactura] = useState(false);
+  const [ListaProductos, setListaProductos] = useState([])
   const palabras_prohibidas = [
     "puto",
     "mierda",
@@ -75,6 +77,19 @@ const Destino = ({
   const validarCodigoPostal = (codigoPostal) =>
     codigoPostal.length >= 4 && codigoPostal.length <= 7;
 
+  const validarCorreo = (correo) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(correo);
+  };
+
+  useEffect(() => {
+    const obtenerListaProductos = JSON.parse(localStorage.getItem("listaProductos")) || []
+    setListaProductos(obtenerListaProductos)
+
+    
+  }, [])
+
+
   useEffect(() => {
     const cargoEnvio1 = 9.0;
     setCargoEnvio(cargoEnvio1);
@@ -85,6 +100,9 @@ const Destino = ({
     setTotalCargo((total).toFixed(2));
   }, [EnviarTotal, CargoEnvio]);
 
+  function llenarCorreo(correo) {
+    setCorreo(correo);
+  }
   function llenarDireccion(dirección) {
     setDireccion(dirección);
   }
@@ -92,9 +110,32 @@ const Destino = ({
     setCodigoPostal(codigoPostal);
   }
 
+  function actualizarInventario() {
+    console.log("Productos seleccionados:", productosSeleccionados);
+    console.log("Lista de productos antes de actualizar:", ListaProductos);
+  
+    const actualizarListaProductos = ListaProductos.map(producto => {
+      const productoSeleccionado = productosSeleccionados.find(p => p.idProducto === producto.idProducto);
+      if (productoSeleccionado) {
+        return {
+          ...producto,
+          cantidad: producto.cantidad - productoSeleccionado.cantidad
+        };
+      }
+      return producto;
+    });
+  
+    const productosActualizados = actualizarListaProductos.filter(producto => producto.cantidad > 0);
+  
+    console.log("Lista de productos después de actualizar:", productosActualizados);
+  
+    localStorage.setItem("listaProductos", JSON.stringify(productosActualizados));
+    setListaProductos(productosActualizados);
+  }
+
   function validardatos() {
     if (validarRelleno()) {
-      if (validarDireccion(Direccion) && validarCodigoPostal(CodigoPostal)) {
+      if (validarDireccion(Direccion) && validarCodigoPostal(CodigoPostal) && validarCorreo(Correo)) {
         Swal.fire({
           position: "top",
           icon: "success",
@@ -105,7 +146,13 @@ const Destino = ({
             popup: "custom-swal",
           },
         });
+
+        actualizarInventario()
+
         setMostrarFactura(true);
+        setCodigoPostal("")
+        setCorreo("")
+        setDireccion("")
       } else if (!validarDireccion(Direccion)) {
         Swal.fire({
           position: "top",
@@ -128,12 +175,23 @@ const Destino = ({
             popup: "custom-swal",
           },
         });
+      }else if (!validarCorreo(Correo)){
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Correo es invalido",
+          text: "Error!!, ingrese un correo valido",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
       }
     }
   }
 
   function validarRelleno() {
-    if (!Direccion || !CodigoPostal) {
+    if (!Direccion || !CodigoPostal || !Correo) {
       Swal.fire({
         position: "top",
         icon: "error",
@@ -162,6 +220,7 @@ const Destino = ({
                 onClick={() => setDestinoMostrar(false)}
               >
                 <img src={salir} alt="salir" className="salir21"></img>
+                Cancelar
               </button>
             </div>
             <div className="contenedor-presupuesto-preguntas">
@@ -176,10 +235,10 @@ const Destino = ({
                   <strong>Met. transporte :</strong> Terrestre
                 </div>
                 <div className="datos-entrega">
-                  <strong>Peso paquete :</strong> 980g
+                  <strong>Peso paquete :</strong> 10lb
                 </div>
                 <div className="datos-entrega">
-                  <strong>Tiempo entrega :</strong> 15 dias
+                  <strong>Tiempo entrega :</strong> 5 dias
                 </div>
                 <div className="cargo-entrega">
                   <strong>Total productos :</strong>
@@ -195,6 +254,20 @@ const Destino = ({
                 </div>
               </div>
               <div className="preguntas">
+                <div className="coolinput">
+                  <label className="text" htmlFor="input">
+                    Correo:
+                  </label>
+                  <input
+                    className="input"
+                    name="input"
+                    placeholder="correo...."
+                    type="email"
+                    value={Correo}
+                    onChange={(e) => llenarCorreo(e.target.value)}
+                    required
+                  ></input>
+                </div>
                 <div className="coolinput">
                   <label className="text" htmlFor="input">
                     Direccion:
@@ -217,7 +290,7 @@ const Destino = ({
                     className="input"
                     name="input"
                     placeholder="Cod. Postal..."
-                    type="text"
+                    type="number"
                     value={CodigoPostal}
                     onChange={(e) => llenarCodigoPostal(e.target.value)}
                     required

@@ -17,20 +17,20 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  animation: desplazarBottom 1s ease forwards;
+  animation: desplazarBottom 0.5s ease forwards;
 }
 @keyframes desplazarBottom {
   0% {
-    transform: translateY(100%);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 }
 .contenedor-btn-salir {
   margin-top: 12px;
   width: 90%;
-  height: 8%;
+  height: 5%;
   display: flex;
   flex-direction: column;
   justify-content: right;
@@ -41,6 +41,7 @@
   height: 100%;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 .salir-img {
   width: 100%;
@@ -194,15 +195,36 @@
 
 @media (width <= 700px) {
   .contenedor-informes-padre {
-    animation: desplazarBottom 1s ease forwards;
+    animation: desplazarBottom 0.5s ease forwards;
   }
   @keyframes desplazarBottom {
     0% {
-      transform: translateY(100%);
+      transform: translateX(-100%);
     }
     100% {
-      transform: translateY(0%);
+      transform: translateX(0%);
     }
+  }
+  .contenedor-btn-salir {
+    margin-top: 12px;
+    width: 90%;
+    height: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+
+  }
+  .btn-salir {
+    width: 20%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .salir-img {
+    width: 100%;
+    height: 100%;
   }
   .datos-user-informe {
     width: 100%;

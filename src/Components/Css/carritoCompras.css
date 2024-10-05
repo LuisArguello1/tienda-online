@@ -12,7 +12,7 @@
   background-color: white;
   position: fixed;
   overflow-y: auto; /* Permitir desplazamiento vertical */
-  animation: desplazarleft2 1.2s ease forwards;
+  animation: desplazarleft2 0.5s ease forwards;
 }
 
 @keyframes desplazarleft2 {
@@ -198,6 +198,14 @@
   padding-bottom: 20px;
   padding-top: 20px;
 }
+.msjError{
+  width: 100%;
+  height: auto;
+  color: red;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .Subtotal {
   font-size: 20px;
   width: 100%;
@@ -230,7 +238,7 @@
 }
 /* From Uiverse.io by vinodjangid07 */
 .Btn {
-  width: 160px;
+  width: 250px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -257,7 +265,7 @@
 }
 
 .Btn::before {
-  width: 160px;
+  width: 250px;
   height: 160px;
   position: absolute;
   content: "";
@@ -313,7 +321,7 @@
     }
   }
 }
-@media (480px <= width < 1000px) {
+@media (768px <= width < 1024px) {
   .contenedor-carrito-compras {
     top: 0;
     right: 0;
@@ -346,8 +354,20 @@
     height: fit-content;
     height: auto;
   }
+  .productosSeleccionados {
+    width: 85%;
+    height: 200px; /* Limitar la altura máxima */
+    border-bottom: 2px solid rgba(172, 171, 171);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+  }
 }
-@media (width <= 480px) {
+@media (width < 768px)  {
   .contenedor-carrito-compras {
     top: 0;
     right: 0;
@@ -362,26 +382,30 @@
     position: fixed;
     animation: desplazarleft2 1.2s ease forwards;
     overflow-y: auto; /* Permitir desplazamiento vertical */
+    border: 1px solid red;
   }
   @keyframes desplazarleft2 {
     0% {
-      transform: translateX(100%);
+      transform: translateX(-100%);
     }
     100% {
       transform: translateX(0%);
     }
   }
-  .img-producto {
-    width: 60%;
+  .contenedor-img {
+    width: 30%;
+    height: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
+  }
+  .img-producto {
+    width: 100%;
     height: fit-content;
     height: auto;
-  }
-  .contenedor-img {
-    display: none;
   }
   .encabezado-carrito {
     box-sizing: border-box;
@@ -389,13 +413,13 @@
     width: 90%;
     height: auto;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgba(172, 171, 171);
   }
   .productosSeleccionados {
-    width: 80%;
+    width: 85%;
     height: 200px; /* Limitar la altura máxima */
     border-bottom: 2px solid rgba(172, 171, 171);
     display: flex;
@@ -411,10 +435,10 @@
     padding-right: 30px;
     padding-bottom: 10px;
     width: 70%;
-    height: 70%;
+    height: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    align-items: flex-end;
   }
 }

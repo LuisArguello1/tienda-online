@@ -136,6 +136,13 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
       validarCodigoPostal(CodigoPostal) &&
       validarCiudad(Ciudad)
     ) {
+      setCiudad("")
+      setCodigoPostal("")
+      setCodigoSeguridad("")
+      setDireccion("")
+      setFechaExpiracion("")
+      setNombreTitular("")
+      setNumeroTarjeta("")
       setDestinoMostrar(true)
 
     } else if (!validarNumeroTarjeta(NumeroTarjeta)) {

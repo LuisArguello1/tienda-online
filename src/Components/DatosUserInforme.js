@@ -77,7 +77,7 @@ const DatosUserInforme = ({ MostarDatosInforme, setMostrarDatosInforme }) => {
                       ></path>
                     </svg>
                   </button>
-                  <button className="btn" onClick={() => deleteUser(user.cedula)}>
+                  <button className="btn3" onClick={() => deleteUser(user.cedula)}>
                     <svg
                       viewBox="0 0 15 17.5"
                       height="17.5"

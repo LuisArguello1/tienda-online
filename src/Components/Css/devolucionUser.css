@@ -12,14 +12,14 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  animation: desplazarRight 1.1s ease forwards;
+  animation: desplazarRight 0.5s ease forwards;
 }
 @keyframes desplazarRight {
   0% {
-    transform: translateY(-100%);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 }
 .contenedor-scroll-devolucion-user {

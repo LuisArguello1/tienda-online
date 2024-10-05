@@ -34,6 +34,10 @@ const Factura = ({
     localStorage.setItem('usuarios', JSON.stringify(listaUsuariosActualizada));
   }, [nombreUsuario, productosSeleccionados, TotalCargo]);
 
+  function recargarPagina() {
+    window.location.reload()
+  }
+
   return (
     <>
       {MostarFactura && (
@@ -41,9 +45,10 @@ const Factura = ({
           <div className="contenedor-btn">
             <button
               className="button-salir"
-              onClick={() => setMostrarFactura(false)}
+              onClick={recargarPagina}
             >
               <img src={salir} alt="salir"></img>
+              Salir
             </button>
           </div>
           <div className="contenedor-factura-scroll">
