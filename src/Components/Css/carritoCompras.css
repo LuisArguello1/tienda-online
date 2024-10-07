@@ -382,7 +382,6 @@
     position: fixed;
     animation: desplazarleft2 1.2s ease forwards;
     overflow-y: auto; /* Permitir desplazamiento vertical */
-    border: 1px solid red;
   }
   @keyframes desplazarleft2 {
     0% {

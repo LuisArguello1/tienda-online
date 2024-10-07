@@ -510,15 +510,6 @@ const Registro_user = () => {
   const rellenarDatos = (estado1, estado2) => {
     if (validarDatosUser()) {
       if (compararUser()) {
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "Excelente...",
-          width: "300px",
-          customClass: {
-            popup: "custom-swal",
-          },
-        });
         compararDatosAdmisnistrativos();
 
         const mostrar = NombreUsuario;

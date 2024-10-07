@@ -390,7 +390,7 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
                     </div>
                   </div>
                 </div>
-                <button className="button2" onClick={() => llenarTarjetadatos()}>
+                <button className="button6" onClick={() => llenarTarjetadatos()}>
                   Agregar destino
                 </button>
               </div>

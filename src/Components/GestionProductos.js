@@ -9,6 +9,139 @@ const GestionProductos = ({
 }) => {
   const [ListaProductos, setListaProductos] = useState([]);
   const [MostrarBtnEdicion, setMostrarBtnEdicion] = useState(false);
+  const [MostrarEdicionProducto, setMostrarEdicionProducto] = useState(false);
+  const [ProductoEdicion, setProductoEdicion] = useState();
+
+  const [NombreProducto, setNombreProducto] = useState("");
+  const [PrecioProducto, setPrecioProducto] = useState();
+  const [CantidadProducto, setCantidadProducto] = useState();
+  const [IdProducto, setIdProducto] = useState();
+  const [UrlProducto, setUrlProducto] = useState();
+
+  const validarPrecioProducto = (precio) => /^\d+(\.\d{1,2})?$/.test(precio);
+  const validarCantidad = (cantidad) => /^\d+/.test(cantidad);
+  const validarId = (id) => typeof id === 'number' && !isNaN(id) && id > 0;
+
+  function editarProducto(producto) {
+    setMostrarEdicionProducto(true);
+    setProductoEdicion(producto);
+  }
+
+  function validarCampos() {
+    if (validarEntradasCambios()) {
+      if (
+        validarPrecioProducto(PrecioProducto) &&
+        validarCantidad(CantidadProducto) &&
+        validarId(IdProducto)
+      ) {
+        // Comprobar si el ID ya existe
+        const idExistente = ListaProductos.find(
+          (producto) =>
+            producto.idProducto === IdProducto &&
+            producto.idProducto !== ProductoEdicion?.idProducto // Excluir el ID del producto que se está editando
+        );
+
+        console.log(idExistente)
+
+        if (idExistente) {
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "El ID ya existe, por favor ingrese uno diferente.",
+            width: "300px",
+            customClass: {
+              popup: "custom-swal",
+            },
+          });
+        } else {
+          const nuevaListaProductos = ListaProductos.map((producto) => {
+            if (producto.idProducto === ProductoEdicion.idProducto) {
+              return {
+                ...producto,
+                nombreProducto: NombreProducto.toUpperCase(),
+                precioProducto: PrecioProducto,
+                cantidad: CantidadProducto,
+                imgProducto: UrlProducto,
+                idProducto: IdProducto,
+              };
+            }
+            return producto;
+          });
+
+          setListaProductos(nuevaListaProductos);
+          setMostrarEdicionProducto(false);
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Cambios guardados con exito",
+            width: "300px",
+            customClass: {
+              popup: "custom-swal",
+            },
+          });
+          setNombreProducto("")
+          setPrecioProducto("")
+          setCantidadProducto("")
+          setIdProducto("")
+          setUrlProducto("")
+        }
+      } else if (!validarPrecioProducto(PrecioProducto)) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title:
+            "Precio Erroneo ingrese solo numeros y el punto de decimal [.]",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+      } else if (!validarCantidad(CantidadProducto)) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Cantidad Erronea, ingrese solo numeros en la cantidad",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+      } else if (!validarId(IdProducto)) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Id Erroneo, colocque solo numeros en el id",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+      }
+    }
+  }
+
+  function validarEntradasCambios() {
+    if (
+      !NombreProducto ||
+      !CantidadProducto ||
+      !PrecioProducto ||
+      !IdProducto ||
+      !UrlProducto
+    ) {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Rellene todos los campos",
+        width: "300px",
+        customClass: {
+          popup: "custom-swal",
+        },
+      });
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   useEffect(() => {
     const obtenerListaProductos =
@@ -22,19 +155,30 @@ const GestionProductos = ({
   }, [ListaProductos]);
 
   function eliminarProducto(producto) {
-    const nuevaListaProductos = ListaProductos.filter((p) => p.idProducto !== producto.idProducto)
-    setListaProductos(nuevaListaProductos)
-    localStorage.setItem("listaProductos", JSON.stringify(nuevaListaProductos))
+    const nuevaListaProductos = ListaProductos.filter(
+      (p) => p.idProducto !== producto.idProducto
+    );
+    setListaProductos(nuevaListaProductos);
+    localStorage.setItem("listaProductos", JSON.stringify(nuevaListaProductos));
     Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Producto eliminado",
-        text: "Reinicie la pagina para aplicar los cambios",
-        width: "300px",
-        customClass: {
-          popup: "custom-swal",
-        },
+      position: "top",
+      icon: "success",
+      title: "Producto eliminado",
+      text: "Reinicie la pagina para aplicar los cambios",
+      width: "300px",
+      customClass: {
+        popup: "custom-swal",
+      },
     });
+  }
+
+  function vaciarEntradas() {
+    setMostrarEdicionProducto(false)
+    setNombreProducto("")
+    setPrecioProducto("")
+    setCantidadProducto("")
+    setIdProducto("")
+    setUrlProducto("")
   }
 
   return (
@@ -105,6 +249,9 @@ const GestionProductos = ({
                       <div className="cantidad-producto-prueba2">
                         disponible: # {producto.cantidad}
                       </div>
+                      <div className="cantidad-producto-prueba2">
+                        Id: # {producto.idProducto}
+                      </div>
                     </div>
                     <div className="contenedor-ptn-prueba2">
                       <button className="btn-comprar-prueba2">COMPRAR</button>
@@ -114,7 +261,10 @@ const GestionProductos = ({
                     {MostrarBtnEdicion && (
                       /* From Uiverse.io by vinodjangid07 */
                       <>
-                        <button className="button2" onClick={() => eliminarProducto(producto)}>
+                        <button
+                          className="button2"
+                          onClick={() => eliminarProducto(producto)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -161,7 +311,10 @@ const GestionProductos = ({
                             </defs>
                           </svg>
                         </button>
-                        <button className="editBtn">
+                        <button
+                          className="editBtn"
+                          onClick={() => editarProducto(producto)}
+                        >
                           <svg height="1em" viewBox="0 0 512 512">
                             <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
                           </svg>
@@ -173,6 +326,109 @@ const GestionProductos = ({
               ))}
             </div>
           </div>
+          {MostrarEdicionProducto && (
+            <div className="contenedor-padre-edicion-producto">
+              <div className="contenedor-btn-salir2">
+                <strong>
+                  Edit: {ProductoEdicion.nombreProducto}
+                </strong>
+              </div>
+              <div
+                className="contenedor-producto-prueba3"
+                key={ProductoEdicion.idProducto}
+              >
+                <div className="contenedor-img-producto-prueba3">
+                  <img
+                    src={ProductoEdicion.imgProducto}
+                    alt="img-producto"
+                    className="img-producto-prueba"
+                  ></img>
+                </div>
+                <div className="contenedor-detalle-producto-prueba3">
+                  <div className="detalle-producto-prueba3">
+                    {ProductoEdicion.nombreProducto}
+                  </div>
+                  <div className="contenedor-precio-cantidad-prueba3">
+                    <div className="precio-producto-prueba3">
+                      $ {ProductoEdicion.precioProducto}
+                    </div>
+                    <div className="cantidad-producto-prueba3">
+                      disponible: # {ProductoEdicion.cantidad}
+                    </div>
+                    <div className="cantidad-producto-prueba3">
+                      Id: # {ProductoEdicion.idProducto}
+                    </div>
+                  </div>
+                  <div className="contenedor-ptn-prueba3">
+                    <button className="btn-comprar-prueba3">COMPRAR</button>
+                  </div>
+                </div>
+              </div>
+              <div className="contenedor-entradas-de-cambio">
+                <form className="formField">
+                  <input
+                    required
+                    type="text"
+                    value={NombreProducto}
+                    onChange={(e) => setNombreProducto(e.target.value)}
+                  />
+                  <span className="span1">Nombre producto</span>
+                </form>
+                <form className="formField">
+                  <input
+                    required
+                    type="text"
+                    value={PrecioProducto}
+                    onChange={(e) => setPrecioProducto(e.target.value)}
+                  />
+                  <span className="span1">Precio Producto</span>
+                </form>
+                <form className="formField">
+                  <input
+                    required
+                    type="number"
+                    value={CantidadProducto}
+                    onChange={(e) => setCantidadProducto(e.target.value)}
+                  />
+                  <span className="span1">Cantidad Producto</span>
+                </form>
+                <form className="formField">
+                  <input
+                    required
+                    type="number"
+                    value={IdProducto}
+                    onChange={(e) => setIdProducto(Number(e.target.value))}
+                  />
+                  <span className="span1">Id Producto</span>
+                </form>
+                <form className="formField">
+                  <input
+                    required
+                    type="url"
+                    value={UrlProducto}
+                    onChange={(e) => setUrlProducto(e.target.value)}
+                  />
+                  <span className="span1">url de img-Producto</span>
+                </form>
+              </div>
+              <div className="contenedor-btns-cancelar-guardar">
+                <button
+                  className="button-name2"
+                  role="button"
+                  onClick={validarCampos}
+                >
+                  Guardar
+                </button>
+                <button
+                  className="button-name3"
+                  role="button"
+                  onClick={() => vaciarEntradas()}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>

@@ -16,7 +16,6 @@
   background-image: url(../Img/magicpattern-wave-generator-1726341726039.png);
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 20px;
   color: black;
   display: flex;
   flex-direction: column;
@@ -292,11 +291,11 @@
     gap: 0.5em;
   }
 }
-@media (width <= 700px) {
+@media (width <= 780px) {
   .contenedor-destino-padre {
     z-index: 6;
     width: 100%;
-    height: 130vh;
+    height: 110vh;
     overflow-y: auto;
     position: fixed;
     top: 50%;
@@ -308,7 +307,7 @@
     color: black;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
   }
   .contenedor-salir {
@@ -322,13 +321,13 @@
     padding-top: 20px;
     font-size: 20px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
   }
   .salir-button {
-    width: 30%;
-    height: 50%;
-    border-radius: 30px;
-    background-color: transparent;
+    width: 40%;
+    height: 80%;
+    border-radius: 15px;
+    background-color: black;
     cursor: pointer;
   }
   .contenedor-presupuesto-preguntas {
@@ -345,13 +344,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 1em;
   }
   .presupuesto {
     width: 100%;
-    height: auto;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -359,6 +358,8 @@
     gap: 15px;
     font-size: 16px;
     text-align: center;
+    overflow-y: auto;
+    border:1px solid blue;
   }
   .datos-entrega {
     width: 100%;
