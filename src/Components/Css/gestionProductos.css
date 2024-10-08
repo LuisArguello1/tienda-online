@@ -414,13 +414,19 @@
 }
 .contenedor-entradas-de-cambio{
   width: 90%;
-  height: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 2em;
+  border: 1px solid blue;
+}
+.url-img{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
 }
 .contenedor-btns-cancelar-guardar{
   width: 90%;
@@ -798,9 +804,15 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 1em;
+    padding: 10px 0px;
     border: 1px solid blue;
     overflow-y: auto;
+  }
+  .url-img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
   }
   .contenedor-producto-prueba3 {
     width: 90%;

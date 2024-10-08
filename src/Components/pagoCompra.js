@@ -6,7 +6,17 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import Destino from "./Destino";
 
-const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccionados,ListaUsuarios,nombreUsuario,Total,Subtotal,Iva }) => {
+const PagoCompra = ({
+  mostrarPago,
+  setMostrarPago,
+  EnviarTotal,
+  productosSeleccionados,
+  ListaUsuarios,
+  nombreUsuario,
+  Total,
+  Subtotal,
+  Iva,
+}) => {
   const palabras_prohibidas = [
     "puto",
     "mierda",
@@ -53,7 +63,7 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
     "hembro",
     "coca",
   ];
-  const [DestinoMostrar, setDestinoMostrar] = useState(false)
+  const [DestinoMostrar, setDestinoMostrar] = useState(false);
   const [NumeroTarjeta, setNumeroTarjeta] = useState("");
   const [FechaExpiracion, setFechaExpiracion] = useState("");
   const [CodigoSeguridad, setCodigoSeguridad] = useState("");
@@ -62,17 +72,17 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
   const [CodigoPostal, setCodigoPostal] = useState("");
   const [Ciudad, setCiudad] = useState("");
 
-  const validarNumeroTarjeta = (numeroTarjeta) => numeroTarjeta.length === 16;
+  const validarNumeroTarjeta = (numeroTarjeta) => numeroTarjeta.length === 19;
   const validarFechaExpiracion = (fechaExpiracion) => {
     const [month, year] = fechaExpiracion.split("/");
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear() % 100; // Obtener solo los dos últimos dígitos
     const currentMonth = new Date().getMonth() + 1;
 
-    const expYear = parseInt(year); // Asumiendo que el año está en formato YYYY
-    const expMonth = parseInt(month);
+    const expYear = parseInt(year, 10); // Año en formato aa
+    const expMonth = parseInt(month, 10); // Mes en formato mm
 
     // Validar formato de fecha
-    if (!/^\d{2}\/\d{4}$/.test(fechaExpiracion)) {
+    if (!/^\d{2}\/\d{2}$/.test(fechaExpiracion)) {
       return false;
     }
 
@@ -105,10 +115,26 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
     ciudad.length > 5 && !palabras_prohibidas.includes(ciudad.toLowerCase());
 
   function llenarNumeroTarjeta(numeroTarjeta) {
-    setNumeroTarjeta(numeroTarjeta);
+    // Eliminar todos los caracteres que no sean dígitos
+    const soloNumeros = numeroTarjeta.replace(/\D/g, "");
+
+    // Formatear el número en bloques de 4
+    const formateado = soloNumeros.replace(/(.{4})/g, "$1 ").trim();
+
+    setNumeroTarjeta(formateado);
   }
   function llenarFechaExpiracion(fechaExpiracion) {
-    setFechaExpiracion(fechaExpiracion);
+    // Eliminar todos los caracteres que no sean dígitos
+    const soloNumeros = fechaExpiracion.replace(/\D/g, "");
+
+    // Formatear en mm/aa
+    const mes = soloNumeros.slice(0, 2); // Primeros 2 dígitos son el mes
+    const anio = soloNumeros.slice(2, 4); // Siguientes 2 dígitos son el año
+
+    // Concatenar con formato mm/aa
+    const formateado = mes + (anio ? "/" + anio : "");
+
+    setFechaExpiracion(formateado);
   }
   function llenarCodigoSeguridad(codigoSeguridad) {
     setCodigoSeguridad(codigoSeguridad);
@@ -136,15 +162,14 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
       validarCodigoPostal(CodigoPostal) &&
       validarCiudad(Ciudad)
     ) {
-      setCiudad("")
-      setCodigoPostal("")
-      setCodigoSeguridad("")
-      setDireccion("")
-      setFechaExpiracion("")
-      setNombreTitular("")
-      setNumeroTarjeta("")
-      setDestinoMostrar(true)
-
+      setCiudad("");
+      setCodigoPostal("");
+      setCodigoSeguridad("");
+      setDireccion("");
+      setFechaExpiracion("");
+      setNombreTitular("");
+      setNumeroTarjeta("");
+      setDestinoMostrar(true);
     } else if (!validarNumeroTarjeta(NumeroTarjeta)) {
       Swal.fire({
         position: "top",
@@ -390,7 +415,10 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
                     </div>
                   </div>
                 </div>
-                <button className="button6" onClick={() => llenarTarjetadatos()}>
+                <button
+                  className="button6"
+                  onClick={() => llenarTarjetadatos()}
+                >
                   Agregar destino
                 </button>
               </div>
@@ -400,9 +428,10 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
                 <form className="formField">
                   <input
                     required=""
-                    type="number"
+                    type="text"
                     value={NumeroTarjeta}
                     onChange={(e) => llenarNumeroTarjeta(e.target.value)}
+                    maxLength={19}
                   ></input>
                   <span className="span1">Numero de tarjeta:</span>
                 </form>
@@ -412,6 +441,7 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
                     type="text"
                     value={FechaExpiracion}
                     onChange={(e) => llenarFechaExpiracion(e.target.value)}
+                    maxLength={5}
                   ></input>
                   <span className="span1">MM / AA:</span>
                 </form>
@@ -466,7 +496,18 @@ const PagoCompra = ({ mostrarPago, setMostrarPago,EnviarTotal,productosSeleccion
         </div>
       )}
       {DestinoMostrar && (
-        <Destino setMostrarPago={setMostrarPago} DestinoMostrar={DestinoMostrar} setDestinoMostrar={setDestinoMostrar} EnviarTotal={EnviarTotal} productosSeleccionados={productosSeleccionados} ListaUsuarios={ListaUsuarios} nombreUsuario={nombreUsuario} Total={Total} Subtotal={Subtotal} Iva = {Iva}></Destino>
+        <Destino
+          setMostrarPago={setMostrarPago}
+          DestinoMostrar={DestinoMostrar}
+          setDestinoMostrar={setDestinoMostrar}
+          EnviarTotal={EnviarTotal}
+          productosSeleccionados={productosSeleccionados}
+          ListaUsuarios={ListaUsuarios}
+          nombreUsuario={nombreUsuario}
+          Total={Total}
+          Subtotal={Subtotal}
+          Iva={Iva}
+        ></Destino>
       )}
     </>
   );

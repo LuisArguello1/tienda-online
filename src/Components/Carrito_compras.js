@@ -117,7 +117,7 @@ const Carrito_compras = ({
                 <div className="contenedorProducto" key={producto.idProducto}>
                   <div className="contenedor-img">
                     <img
-                      src={producto.imgProducto}
+                      src={producto.urlImagen}
                       alt="imagen no encontrada"
                       className="img-producto"
                     ></img>

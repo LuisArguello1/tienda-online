@@ -180,7 +180,7 @@ const Productos = ({ esAdmin, nombreUsuario, ListaUsuarios }) => {
                         <div className="imgProducto2">
                           <img
                             className="productoImg"
-                            src={producto.imgProducto}
+                            src={producto.urlImagen}
                             alt="img - producto"
                           ></img>
                         </div>
@@ -211,7 +211,7 @@ const Productos = ({ esAdmin, nombreUsuario, ListaUsuarios }) => {
                   >
                     <div className="contenedor-img-producto-prueba">
                       <img
-                        src={producto.imgProducto}
+                        src={producto.urlImagen}
                         alt="img-producto"
                         className="img-producto-prueba"
                       ></img>

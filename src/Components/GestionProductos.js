@@ -2,6 +2,7 @@ import React from "react";
 import "./Css/gestionProductos.css";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import ProductoAgregar from "./ProductoAgregar";
 
 const GestionProductos = ({
   MostrarGestionProductos,
@@ -10,6 +11,7 @@ const GestionProductos = ({
   const [ListaProductos, setListaProductos] = useState([]);
   const [MostrarBtnEdicion, setMostrarBtnEdicion] = useState(false);
   const [MostrarEdicionProducto, setMostrarEdicionProducto] = useState(false);
+  const [MostrarAgregarProducto, setMostrarAgregarProducto] = useState(false)
   const [ProductoEdicion, setProductoEdicion] = useState();
 
   const [NombreProducto, setNombreProducto] = useState("");
@@ -20,11 +22,22 @@ const GestionProductos = ({
 
   const validarPrecioProducto = (precio) => /^\d+(\.\d{1,2})?$/.test(precio);
   const validarCantidad = (cantidad) => /^\d+/.test(cantidad);
-  const validarId = (id) => typeof id === 'number' && !isNaN(id) && id > 0;
+  const validarId = (id) => typeof id === "number" && !isNaN(id) && id > 0;
 
   function editarProducto(producto) {
     setMostrarEdicionProducto(true);
     setProductoEdicion(producto);
+  }
+
+  function capturarImg(e) {
+    const archivo = e.target.files[0];
+    if (archivo) {
+      const reader = new FileReader
+      reader.onloadend = () => {
+        setUrlProducto(reader.result)
+      }
+      reader.readAsDataURL(archivo)
+    }
   }
 
   function validarCampos() {
@@ -41,7 +54,7 @@ const GestionProductos = ({
             producto.idProducto !== ProductoEdicion?.idProducto // Excluir el ID del producto que se está editando
         );
 
-        console.log(idExistente)
+        console.log(idExistente);
 
         if (idExistente) {
           Swal.fire({
@@ -63,6 +76,7 @@ const GestionProductos = ({
                 cantidad: CantidadProducto,
                 imgProducto: UrlProducto,
                 idProducto: IdProducto,
+                urlImagen: UrlProducto,
               };
             }
             return producto;
@@ -79,11 +93,11 @@ const GestionProductos = ({
               popup: "custom-swal",
             },
           });
-          setNombreProducto("")
-          setPrecioProducto("")
-          setCantidadProducto("")
-          setIdProducto("")
-          setUrlProducto("")
+          setNombreProducto("");
+          setPrecioProducto("");
+          setCantidadProducto("");
+          setIdProducto("");
+          setUrlProducto("");
         }
       } else if (!validarPrecioProducto(PrecioProducto)) {
         Swal.fire({
@@ -173,12 +187,12 @@ const GestionProductos = ({
   }
 
   function vaciarEntradas() {
-    setMostrarEdicionProducto(false)
-    setNombreProducto("")
-    setPrecioProducto("")
-    setCantidadProducto("")
-    setIdProducto("")
-    setUrlProducto("")
+    setMostrarEdicionProducto(false);
+    setNombreProducto("");
+    setPrecioProducto("");
+    setCantidadProducto("");
+    setIdProducto("");
+    setUrlProducto("");
   }
 
   return (
@@ -219,7 +233,7 @@ const GestionProductos = ({
                 X<div className="close">cancelar edicion</div>
               </button>
             )}
-            <button className="button-name" role="button">
+            <button className="button-name" role="button" onClick={() => setMostrarAgregarProducto(true)}>
               Agregar producto
             </button>
           </div>
@@ -233,7 +247,7 @@ const GestionProductos = ({
                 >
                   <div className="contenedor-img-producto-prueba2">
                     <img
-                      src={producto.imgProducto}
+                      src={producto.urlImagen}
                       alt="img-producto"
                       className="img-producto-prueba"
                     ></img>
@@ -329,9 +343,7 @@ const GestionProductos = ({
           {MostrarEdicionProducto && (
             <div className="contenedor-padre-edicion-producto">
               <div className="contenedor-btn-salir2">
-                <strong>
-                  Edit: {ProductoEdicion.nombreProducto}
-                </strong>
+                <strong>Edit: {ProductoEdicion.nombreProducto}</strong>
               </div>
               <div
                 className="contenedor-producto-prueba3"
@@ -339,7 +351,7 @@ const GestionProductos = ({
               >
                 <div className="contenedor-img-producto-prueba3">
                   <img
-                    src={ProductoEdicion.imgProducto}
+                    src={ProductoEdicion.urlImagen}
                     alt="img-producto"
                     className="img-producto-prueba"
                   ></img>
@@ -401,15 +413,20 @@ const GestionProductos = ({
                   />
                   <span className="span1">Id Producto</span>
                 </form>
-                <form className="formField">
-                  <input
-                    required
-                    type="url"
-                    value={UrlProducto}
-                    onChange={(e) => setUrlProducto(e.target.value)}
-                  />
-                  <span className="span1">url de img-Producto</span>
-                </form>
+                <input
+                  className="input-file"
+                  required
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => capturarImg(e)}
+                />
+                {UrlProducto && (
+                  <img
+                    src={UrlProducto}
+                    alt="img-preview"
+                    className="url-img"
+                  ></img>
+                )}
               </div>
               <div className="contenedor-btns-cancelar-guardar">
                 <button
@@ -428,6 +445,9 @@ const GestionProductos = ({
                 </button>
               </div>
             </div>
+          )}
+          {MostrarAgregarProducto && (
+            <ProductoAgregar MostrarAgregarProducto={MostrarAgregarProducto} setMostrarAgregarProducto={setMostrarAgregarProducto}></ProductoAgregar>
           )}
         </div>
       )}
