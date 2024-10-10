@@ -11,7 +11,7 @@ const GestionProductos = ({
   const [ListaProductos, setListaProductos] = useState([]);
   const [MostrarBtnEdicion, setMostrarBtnEdicion] = useState(false);
   const [MostrarEdicionProducto, setMostrarEdicionProducto] = useState(false);
-  const [MostrarAgregarProducto, setMostrarAgregarProducto] = useState(false)
+  const [MostrarAgregarProducto, setMostrarAgregarProducto] = useState(false);
   const [ProductoEdicion, setProductoEdicion] = useState();
 
   const [NombreProducto, setNombreProducto] = useState("");
@@ -19,6 +19,8 @@ const GestionProductos = ({
   const [CantidadProducto, setCantidadProducto] = useState();
   const [IdProducto, setIdProducto] = useState();
   const [UrlProducto, setUrlProducto] = useState();
+  const [ImgNoAdmitida, setImgNoAdmitida] = useState(false);
+  const [ImgAdmitida, setImgAdmitida] = useState(false);
 
   const validarPrecioProducto = (precio) => /^\d+(\.\d{1,2})?$/.test(precio);
   const validarCantidad = (cantidad) => /^\d+/.test(cantidad);
@@ -31,17 +33,53 @@ const GestionProductos = ({
 
   function capturarImg(e) {
     const archivo = e.target.files[0];
+    const maxSize = 2 * 1024 * 1024;
     if (archivo) {
-      const reader = new FileReader
-      reader.onloadend = () => {
-        setUrlProducto(reader.result)
+      if (archivo.size > maxSize) {
+        setImgNoAdmitida(true);
+        setImgAdmitida(false);
+        setUrlProducto(null);
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+        return;
       }
-      reader.readAsDataURL(archivo)
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUrlProducto(reader.result);
+        setImgAdmitida(true);
+        setImgNoAdmitida(false);
+      };
+      reader.readAsDataURL(archivo);
+    }else{
+      setUrlProducto("")
+      setImgAdmitida("")
+      // setImgNoAdmitida("")
     }
   }
 
   function validarCampos() {
     if (validarEntradasCambios()) {
+      if (!ImgAdmitida) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+        setImgNoAdmitida(true)
+        return;
+      }
       if (
         validarPrecioProducto(PrecioProducto) &&
         validarCantidad(CantidadProducto) &&
@@ -233,7 +271,11 @@ const GestionProductos = ({
                 X<div className="close">cancelar edicion</div>
               </button>
             )}
-            <button className="button-name" role="button" onClick={() => setMostrarAgregarProducto(true)}>
+            <button
+              className="button-name"
+              role="button"
+              onClick={() => setMostrarAgregarProducto(true)}
+            >
               Agregar producto
             </button>
           </div>
@@ -421,11 +463,21 @@ const GestionProductos = ({
                   onChange={(e) => capturarImg(e)}
                 />
                 {UrlProducto && (
-                  <img
-                    src={UrlProducto}
-                    alt="img-preview"
-                    className="url-img"
-                  ></img>
+                  <>
+                    <img
+                      src={UrlProducto}
+                      alt="img-preview"
+                      className="url-img"
+                    ></img>
+                    {ImgNoAdmitida && (
+                      <div style={{color: "red"}}>
+                        El archivo es demasiado grande.
+                      </div>
+                    )}
+                    {ImgAdmitida && (
+                      <div style={{color: "green"}}>El archivo es admitido.</div>
+                    )}
+                  </>
                 )}
               </div>
               <div className="contenedor-btns-cancelar-guardar">
@@ -447,7 +499,10 @@ const GestionProductos = ({
             </div>
           )}
           {MostrarAgregarProducto && (
-            <ProductoAgregar MostrarAgregarProducto={MostrarAgregarProducto} setMostrarAgregarProducto={setMostrarAgregarProducto}></ProductoAgregar>
+            <ProductoAgregar
+              MostrarAgregarProducto={MostrarAgregarProducto}
+              setMostrarAgregarProducto={setMostrarAgregarProducto}
+            ></ProductoAgregar>
           )}
         </div>
       )}

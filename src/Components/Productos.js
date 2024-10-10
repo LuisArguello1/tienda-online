@@ -153,18 +153,26 @@ const Productos = ({ esAdmin, nombreUsuario, ListaUsuarios }) => {
 
             <div className="contenedor-productos">
               <div className="titulo-user">
-                <div className="listMenu" onClick={() => mostrarHeader(true)}>
-                  <img className="menu" src={list} alt="menu"></img>
-                  {ProductosSeleccionados.length === 0
-                    ? ""
-                    : MostrarNotificacion && (
-                        <div className="notificacion">
-                          {ProductosSeleccionados.length}
-                        </div>
-                      )}
+                <div className="logo-empresa">
+                  <div style={{color: "white", fontWeight: "bold", width: "50%"}}>
+                    Super<div style={{color: "cadetblue", fontWeight: "bold", fontSize: "18px"}}>Mercado</div>
+                  </div>
+                  <div style={{width: "50%", color: "white"}}>Tu mercado de confianza</div>
                 </div>
-                <div className="nombreUsuario"> Bienvenido, </div>
-                {nombreUsuario}
+                <div className="contenedor-header-phone">
+                  <div className="listMenu" onClick={() => mostrarHeader(true)}>
+                    <img className="menu" src={list} alt="menu"></img>
+                    {ProductosSeleccionados.length === 0
+                      ? ""
+                      : MostrarNotificacion && (
+                          <div className="notificacion">
+                            {ProductosSeleccionados.length}
+                          </div>
+                        )}
+                  </div>
+                  <div className="nombreUsuario"> Bienvenido, </div>
+                  {nombreUsuario}
+                </div>
               </div>
 
               <div className="productosDesct">

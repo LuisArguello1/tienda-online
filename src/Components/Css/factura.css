@@ -7,6 +7,10 @@
     height: 100vh;
     background-color: white;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .contenedor-factura-scroll{
     width: 100%;
@@ -19,13 +23,13 @@
     overflow-y: auto;
 }
 .contenedor-btn{
-    width: 90%;
+    width :80%;
     height: 10%;
     display: flex;
     flex-direction: row;
-    justify-content: right;
-    align-items: end;
-    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.50em;
 }
 .button-salir{
     width: 20%;
@@ -35,7 +39,19 @@
     justify-content: space-evenly;
     align-items: center;
     border: none;
-    
+    cursor: pointer;
+}
+.button-descargar{
+    width: 25%;
+    height: 100%;
+    background-color: rgb(234, 234, 234);
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.button-descargar:hover, .button-salir:hover{
+    background-color: rgb(220, 220, 220);
 }
 .factura-productos{
     width: 80%;
@@ -44,7 +60,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px dotted black;
+    border: 2px solid black;
 }
 .factura-header{
     width: 100%;

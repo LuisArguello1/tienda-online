@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Css/factura.css";
-import logoEmpresa from "./Img/pngwing.com.png";
+import logoEmpresa from "./Img/supermarket.png";
 import salir from "./Assets/salir.svg";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 const Factura = ({
   MostarFactura,
   setMostrarFactura,
@@ -19,8 +21,9 @@ const Factura = ({
   const [Cedula, setCedula] = useState("");
 
   useEffect(() => {
-    let listaUsuariosActualizada = JSON.parse(localStorage.getItem('usuarios')) || [];
-    
+    let listaUsuariosActualizada =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
+
     for (let i = 0; i < listaUsuariosActualizada.length; i++) {
       if (listaUsuariosActualizada[i].usuario === nombreUsuario) {
         listaUsuariosActualizada[i].productoComprados = productosSeleccionados;
@@ -31,22 +34,104 @@ const Factura = ({
       }
     }
 
-    localStorage.setItem('usuarios', JSON.stringify(listaUsuariosActualizada));
+    localStorage.setItem("usuarios", JSON.stringify(listaUsuariosActualizada));
   }, [nombreUsuario, productosSeleccionados, TotalCargo]);
 
   function recargarPagina() {
-    window.location.reload()
+    window.location.reload();
   }
+
+  const generarPDF = () => {
+    const doc = new jsPDF();
+
+    // Agregar el logo
+    doc.setFont("helvetica","bold")
+    doc.text("Super Mercado ", 10, 30);
+    doc.addImage(logoEmpresa, "PNG", 50, 10, 40, 30);
+
+    // Título de la factura
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text("Factura", 150, 30);
+
+    // Datos del usuario
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Datos Usuario:`, 10, 50);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(`Nombre Usuario: ${Usuario}`, 10, 60);
+    doc.text(`Cédula Usuario: ${Cedula}`, 10, 70);
+
+    // Encabezado de la tabla de productos
+    const encabezado = [["Cant", "Descripción", "Precio U.", "Importe"]];
+    const productos = productosSeleccionados.map((p) => [
+      p.cantidad,
+      p.nombreProducto,
+      p.precioProducto,
+      (p.precioProducto * p.cantidad).toFixed(2),
+    ]);
+
+    // Generar tabla de productos
+    autoTable(doc, {
+      head: encabezado,
+      body: productos,
+      startY: 80,
+      theme: "grid"
+    });
+
+    // Preparar datos para la tabla de totales
+    const totales = [
+      ["Subtotal 0%   :", `$${Subtotal}`],
+      ["Subtotal 15%  :", `$${Iva}`],
+      ["Total         :", `$${Total}`],
+      ["Cargo envío   :", `$${CargoEnvio}`],
+      ["Total a pagar :", `$${TotalCargo}`],
+    ];
+
+    const pageWidth = doc.internal.pageSize.getWidth()
+    const tableWidth = 100
+    const startX = pageWidth - tableWidth - 10
+
+    // Generar tabla de totales
+    autoTable(doc, {
+      head: [["Descripción", "Monto"]],
+      body: totales.map(([descripcion, monto]) => {
+        return [
+          {
+            content: descripcion,
+            styles: {
+              font: "helvetica",
+              fontStyle: "bold",
+              textColor: "black",
+              halign: "right",
+            },
+          },
+          { content: monto, styles: { halign: "center" } },
+        ]; // Ajusta el color aquí
+      }),
+      startY: doc.lastAutoTable.finalY + 10, // Inicia después de la tabla de productos
+      startX: startX,
+      columnStyles: {
+        0: { cellWidth: 30 },
+        1: { cellWidth: 30, halign: "center" },
+      },
+      theme: "grid",
+    });
+
+    // Descargar el PDF
+    doc.save("factura.pdf");
+  };
 
   return (
     <>
       {MostarFactura && (
         <div className="contenedor-factura">
           <div className="contenedor-btn">
-            <button
-              className="button-salir"
-              onClick={recargarPagina}
-            >
+            <button className="button-descargar" onClick={generarPDF}>
+              Descargar Factura
+            </button>
+            <button className="button-salir" onClick={recargarPagina}>
               <img src={salir} alt="salir"></img>
               Salir
             </button>

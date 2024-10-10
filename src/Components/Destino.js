@@ -91,7 +91,7 @@ const Destino = ({
 
 
   useEffect(() => {
-    const cargoEnvio1 = 9.0;
+    const cargoEnvio1 = 1.5;
     setCargoEnvio(cargoEnvio1);
   }, []);
 
@@ -110,10 +110,7 @@ const Destino = ({
     setCodigoPostal(codigoPostal);
   }
 
-  function actualizarInventario() {
-    console.log("Productos seleccionados:", productosSeleccionados);
-    console.log("Lista de productos antes de actualizar:", ListaProductos);
-  
+  function actualizarInventario() {  
     const actualizarListaProductos = ListaProductos.map(producto => {
       const productoSeleccionado = productosSeleccionados.find(p => p.idProducto === producto.idProducto);
       if (productoSeleccionado) {
@@ -127,8 +124,6 @@ const Destino = ({
   
     const productosActualizados = actualizarListaProductos.filter(producto => producto.cantidad > 0);
   
-    console.log("Lista de productos después de actualizar:", productosActualizados);
-  
     localStorage.setItem("listaProductos", JSON.stringify(productosActualizados));
     setListaProductos(productosActualizados);
   }
@@ -139,8 +134,8 @@ const Destino = ({
         Swal.fire({
           position: "top",
           icon: "success",
-          title: `Gracias por su compra `,
-          text: "Tome captura de factura por seguridad o reclamo",
+          title: `Comprar exitosa`,
+          text: "Descarge su factura por seguridad o reclamo",
           width: "300px",
           customClass: {
             popup: "custom-swal",
@@ -238,7 +233,7 @@ const Destino = ({
                   <strong>Peso paquete :</strong> 10lb
                 </div>
                 <div className="datos-entrega">
-                  <strong>Tiempo entrega :</strong> 5 dias
+                  <strong>Tiempo entrega :</strong> 3 dias maximo
                 </div>
                 <div className="cargo-entrega">
                   <strong>Total productos :</strong>

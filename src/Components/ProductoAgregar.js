@@ -16,6 +16,8 @@ const ProductoAgregar = ({
   const [IdProducto, setIdProducto] = useState();
   const [UrlProducto, setUrlProducto] = useState();
   const [archivoProducto, setArchivoProducto] = useState(null);
+  const [ImgNoAdmitida, setImgNoAdmitida] = useState(false);
+  const [ImgAdmitida, setImgAdmitida] = useState(false);
 
   const validarPrecioProducto = (precio) => /^\d+(\.\d{1,2})?$/.test(precio);
   const validarCantidad = (cantidad) => /^\d+/.test(cantidad);
@@ -34,16 +36,56 @@ const ProductoAgregar = ({
 
   function capturarImg(e) {
     const archivo = e.target.files[0];
+    const maxSize = 2 * 1024 * 1024;
     if (archivo) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setUrlProducto(reader.result)
+      if (archivo.size > maxSize) {
+        setImgNoAdmitida(true)
+        setImgAdmitida(false);
+        // Limpiar el archivo si es demasiado grande
+        setArchivoProducto(null);
+        setUrlProducto("")
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+        return;
       }
-      reader.readAsDataURL(archivo)
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setUrlProducto(reader.result);
+        setImgAdmitida(true);
+        setImgNoAdmitida(false);
+        setArchivoProducto(archivo)
+      };
+      reader.readAsDataURL(archivo);
+    } else {
+      setUrlProducto("");
+      setImgAdmitida(false);
     }
   }
   function validarCampos() {
-    if (validarEntradasVacias) {
+    
+    if (validarEntradasVacias()) {
+      if (!ImgAdmitida) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "El archivo es demasiado grande. El tamaño máximo permitido es 2 MB.",
+          width: "300px",
+          customClass: {
+            popup: "custom-swal",
+          },
+        });
+        setImgNoAdmitida(true)
+        return;
+      }
       if (
         validarPrecioProducto(PrecioProducto) &&
         validarCantidad(CantidadProducto) &&
@@ -65,18 +107,24 @@ const ProductoAgregar = ({
           });
         } else {
           const NuevoProducto = new Producto(
-            NombreProducto.toUpperCase,
+            NombreProducto.toUpperCase(),
             PrecioProducto,
             IdProducto,
             CantidadProducto,
             UrlProducto
           );
 
-          setListaProductos((prev)=> {
-            const nuevosProductos = [{ ...NuevoProducto, urlImagen: UrlProducto }, ...prev];
-            localStorage.setItem("listaProductos", JSON.stringify(nuevosProductos))
-            return nuevosProductos 
-          })
+          setListaProductos((prev) => {
+            const nuevosProductos = [
+              { ...NuevoProducto, urlImagen: UrlProducto },
+              ...prev,
+            ];
+            localStorage.setItem(
+              "listaProductos",
+              JSON.stringify(nuevosProductos)
+            );
+            return nuevosProductos;
+          });
 
           Swal.fire({
             position: "top",
@@ -92,7 +140,7 @@ const ProductoAgregar = ({
           setCantidadProducto("");
           setIdProducto("");
           setUrlProducto("");
-          setArchivoProducto(null); 
+          setArchivoProducto(null);
         }
       } else if (!validarPrecioProducto(PrecioProducto)) {
         Swal.fire({
@@ -214,11 +262,21 @@ const ProductoAgregar = ({
               onChange={(e) => capturarImg(e)}
             />
             {UrlProducto && (
-              <img
-                src={UrlProducto}
-                alt="img-preview"
-                className="url-img"
-              ></img>
+              <>
+                <img
+                  src={UrlProducto}
+                  alt="img-preview"
+                  className="url-img"
+                ></img>
+                {ImgNoAdmitida && (
+                  <div>
+                    El archivo es demasiado grande.
+                  </div>
+                )}
+                {ImgAdmitida && (
+                  <div style={{color: "green"}}>El archivo es admitido.</div>
+                )}
+              </>
             )}
           </div>
           <div className="contenedor-btns-cancelar-guardar">
