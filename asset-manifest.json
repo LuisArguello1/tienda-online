@@ -1,9 +1,12 @@
 {
   "files": {
-    "main.css": "/tienda-online/static/css/main.9b8f62a2.css",
-    "main.js": "/tienda-online/static/js/main.ef4123fe.js",
-    "static/media/pngwing.com.png": "/tienda-online/static/media/pngwing.com.7a81d3298066a260ab46.png",
+    "main.css": "/tienda-online/static/css/main.77ff4b28.css",
+    "main.js": "/tienda-online/static/js/main.2aae83be.js",
+    "static/js/239.d6f6f468.chunk.js": "/tienda-online/static/js/239.d6f6f468.chunk.js",
+    "static/js/213.7384bc12.chunk.js": "/tienda-online/static/js/213.7384bc12.chunk.js",
+    "static/js/732.8171ab41.chunk.js": "/tienda-online/static/js/732.8171ab41.chunk.js",
     "static/media/magicpattern-wave-generator-1726341726039.png": "/tienda-online/static/media/magicpattern-wave-generator-1726341726039.e65a364e9730dab0c4be.png",
+    "static/media/supermarket.png": "/tienda-online/static/media/supermarket.0876f03571542ec39839.png",
     "static/media/click.svg": "/tienda-online/static/media/click.eaa72f34d3a51e595115f21377557809.svg",
     "index.html": "/tienda-online/index.html",
     "static/media/eliminar.svg": "/tienda-online/static/media/eliminar.913e68470be93aac6d845f0fb9f01d59.svg",
@@ -11,11 +14,14 @@
     "static/media/shop.svg": "/tienda-online/static/media/shop.34359d569b90f522e6bbf535c51db67f.svg",
     "static/media/list.svg": "/tienda-online/static/media/list.77efebcb049f9ba5c13564148cb56f58.svg",
     "static/media/salir.svg": "/tienda-online/static/media/salir.f7f8b147a5f343b206c61e24e61fb81e.svg",
-    "main.9b8f62a2.css.map": "/tienda-online/static/css/main.9b8f62a2.css.map",
-    "main.ef4123fe.js.map": "/tienda-online/static/js/main.ef4123fe.js.map"
+    "main.77ff4b28.css.map": "/tienda-online/static/css/main.77ff4b28.css.map",
+    "main.2aae83be.js.map": "/tienda-online/static/js/main.2aae83be.js.map",
+    "239.d6f6f468.chunk.js.map": "/tienda-online/static/js/239.d6f6f468.chunk.js.map",
+    "213.7384bc12.chunk.js.map": "/tienda-online/static/js/213.7384bc12.chunk.js.map",
+    "732.8171ab41.chunk.js.map": "/tienda-online/static/js/732.8171ab41.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b8f62a2.css",
-    "static/js/main.ef4123fe.js"
+    "static/css/main.77ff4b28.css",
+    "static/js/main.2aae83be.js"
   ]
 }
