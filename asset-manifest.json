@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tienda-online/static/css/main.77ff4b28.css",
-    "main.js": "/tienda-online/static/js/main.2aae83be.js",
+    "main.css": "/tienda-online/static/css/main.79b6b380.css",
+    "main.js": "/tienda-online/static/js/main.5994d7ba.js",
     "static/js/239.d6f6f468.chunk.js": "/tienda-online/static/js/239.d6f6f468.chunk.js",
     "static/js/213.7384bc12.chunk.js": "/tienda-online/static/js/213.7384bc12.chunk.js",
     "static/js/732.8171ab41.chunk.js": "/tienda-online/static/js/732.8171ab41.chunk.js",
@@ -14,14 +14,14 @@
     "static/media/shop.svg": "/tienda-online/static/media/shop.34359d569b90f522e6bbf535c51db67f.svg",
     "static/media/list.svg": "/tienda-online/static/media/list.77efebcb049f9ba5c13564148cb56f58.svg",
     "static/media/salir.svg": "/tienda-online/static/media/salir.f7f8b147a5f343b206c61e24e61fb81e.svg",
-    "main.77ff4b28.css.map": "/tienda-online/static/css/main.77ff4b28.css.map",
-    "main.2aae83be.js.map": "/tienda-online/static/js/main.2aae83be.js.map",
+    "main.79b6b380.css.map": "/tienda-online/static/css/main.79b6b380.css.map",
+    "main.5994d7ba.js.map": "/tienda-online/static/js/main.5994d7ba.js.map",
     "239.d6f6f468.chunk.js.map": "/tienda-online/static/js/239.d6f6f468.chunk.js.map",
     "213.7384bc12.chunk.js.map": "/tienda-online/static/js/213.7384bc12.chunk.js.map",
     "732.8171ab41.chunk.js.map": "/tienda-online/static/js/732.8171ab41.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.77ff4b28.css",
-    "static/js/main.2aae83be.js"
+    "static/css/main.79b6b380.css",
+    "static/js/main.5994d7ba.js"
   ]
 }
