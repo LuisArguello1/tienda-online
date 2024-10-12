@@ -419,6 +419,22 @@ const GestionProductos = ({
                 </div>
               </div>
               <div className="contenedor-entradas-de-cambio">
+              <div className="contenedor-btns-cancelar-guardar">
+                <button
+                  className="button-name2"
+                  role="button"
+                  onClick={validarCampos}
+                >
+                  Guardar
+                </button>
+                <button
+                  className="button-name3"
+                  role="button"
+                  onClick={() => vaciarEntradas()}
+                >
+                  Cancelar
+                </button>
+              </div>
                 <form className="formField">
                   <input
                     required
@@ -480,22 +496,7 @@ const GestionProductos = ({
                   </>
                 )}
               </div>
-              <div className="contenedor-btns-cancelar-guardar">
-                <button
-                  className="button-name2"
-                  role="button"
-                  onClick={validarCampos}
-                >
-                  Guardar
-                </button>
-                <button
-                  className="button-name3"
-                  role="button"
-                  onClick={() => vaciarEntradas()}
-                >
-                  Cancelar
-                </button>
-              </div>
+              
             </div>
           )}
           {MostrarAgregarProducto && (

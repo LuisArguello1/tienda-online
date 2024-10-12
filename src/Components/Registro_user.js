@@ -68,6 +68,8 @@ const Registro_user = () => {
         50,
         "https://distribuidorariofrio.com/wp-content/uploads/2022/03/la-sazon-maggi-550gr-1.jpg"
       );
+      producto1.urlImagen =
+        "https://distribuidorariofrio.com/wp-content/uploads/2022/03/la-sazon-maggi-550gr-1.jpg";
       let producto2 = new Producto(
         "ACEITE LA FAVORITA 1 L",
         2.17,
@@ -75,6 +77,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/257473000_1.png_1723561307243.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto2.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/257473000_1.png_1723561307243.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto3 = new Producto(
         "AZUCAR MAS AHORRO 1 KG",
         0.99,
@@ -82,6 +86,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/259852000_1.png_1719446719532.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto3.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/259852000_1.png_1719446719532.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto4 = new Producto(
         "SAL YODADA FLUORURADA REFINADA CRIS SAL 1 KG",
         0.49,
@@ -89,6 +95,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/251308000_1.png_1719584055432.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto4.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/251308000_1.png_1719584055432.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto5 = new Producto(
         "PAN MOLDE TA'RIKO 450 G N",
         0.99,
@@ -96,6 +104,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/259628000_1.png_1722456115451.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto5.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/259628000_1.png_1722456115451.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto6 = new Producto(
         "ATUN LOMITOS EN ACEITE REAL 180 G A/F",
         1.39,
@@ -103,6 +113,7 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/257346000_1.png_1722315759324.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto6.urlImagen = "https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/31173.41252.jpg";
       let producto7 = new Producto(
         "TORTILLAS MAMA FANY 250 G",
         2.09,
@@ -110,6 +121,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/251605000_1.png_1719436190655.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto7.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/251605000_1.png_1719436190655.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto8 = new Producto(
         "CEREAL CORN FLAKES MCDOUGAL 320 G LECHE CONDENSADA",
         2.59,
@@ -117,6 +130,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/255171000_1.png_1725577446919.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto8.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/255171000_1.png_1725577446919.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto9 = new Producto(
         "SARDINAS EN SALSA DE TOMATE REAL 156 G",
         0.93,
@@ -124,6 +139,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/255843000_1.png_1723824224316.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto9.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/255843000_1.png_1723824224316.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto10 = new Producto(
         "SALSA DE TOMATE LOS ANDES DOYPACK 200 G",
         1.09,
@@ -131,6 +148,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/250141000_1.png_1723647731634.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto10.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/250141000_1.png_1723647731634.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto11 = new Producto(
         "AVENA EN HOJUELAS QUAKER 500 G",
         1.35,
@@ -138,6 +157,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/257760000_1.png_1721664073031.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto11.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/257760000_1.png_1721664073031.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto12 = new Producto(
         "MAYONESA MAGGI DOYPACK 200 G",
         1.45,
@@ -145,6 +166,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/250209000_1.png_1718405866351.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto12.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/250209000_1.png_1718405866351.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto13 = new Producto(
         "MAIZ DULCE FACUNDO 425 G",
         1.75,
@@ -152,6 +175,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/250328000_1.png_1719461284025.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto13.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/250328000_1.png_1719461284025.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto14 = new Producto(
         "CHOCOLATE EN POLVO CHOCOLISTO DOYPACK 200 G",
         1.99,
@@ -159,6 +184,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/250516000_1.png_1725557469343.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto14.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/250516000_1.png_1725557469343.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto15 = new Producto(
         "ACEITE C/ACHIOTE LA FAVORITA 200 ML",
         1.25,
@@ -166,6 +193,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/257434000_1.png_1719439387552.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto15.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/257434000_1.png_1719439387552.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto16 = new Producto(
         "PREMEZCLA P/PANCAKE YA 454 G",
         2.29,
@@ -173,6 +202,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/251071000_1.png_1725667242954.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto16.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/251071000_1.png_1725667242954.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto17 = new Producto(
         "INFUSIONES TA'RIKO 20 SOBRES HIERBA LUISA",
         0.99,
@@ -180,6 +211,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/259596002_1.png_1719584215668.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto17.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/259596002_1.png_1719584215668.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto18 = new Producto(
         "SUPLEMENTO EN POLVO VOLUMENE PROTEIN ELITE 500 G GRATIS 50 G VAINILLA",
         20.99,
@@ -187,6 +220,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/v/o/volumeneprotein_yey5v5ljaa2jc1hp.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200"
       );
+      producto18.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/v/o/volumeneprotein_yey5v5ljaa2jc1hp.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200";
       let producto19 = new Producto(
         "ACEITUNAS S/HUESO MAS AHORRO 235 G",
         1.29,
@@ -194,6 +229,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/259846000_1.png_1724803291607.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto19.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/259846000_1.png_1724803291607.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto20 = new Producto(
         "MAYONESA GUSTADINA 320 G SABOR A QUESO",
         4.19,
@@ -201,6 +238,8 @@ const Registro_user = () => {
         50,
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSetcoSUXntqXmYwr6JhMcduioR5rv9IjV_OQ&s"
       );
+      producto20.urlImagen =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSetcoSUXntqXmYwr6JhMcduioR5rv9IjV_OQ&s";
       let producto21 = new Producto(
         "SOPA DE POLLO MAGGI 60 G POLLO",
         0.95,
@@ -208,6 +247,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/251106001_1.png_1721689309211.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto21.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/251106001_1.png_1721689309211.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto22 = new Producto(
         "ATUN LOMITOS EN ACEITE GIRASOL TA'RIKO 160 G X 5 A/F",
         4.99,
@@ -215,6 +256,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/259745000_1.png_1719436375830.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto22.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/259745000_1.png_1719436375830.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto23 = new Producto(
         "ARROZ ENVEJECIDO OSO SACO 20 LB",
         11.99,
@@ -222,6 +265,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/257232000_1.png_1722376933343.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto23.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/257232000_1.png_1722376933343.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       let producto24 = new Producto(
         "CREMA DE AVELLANA C/CACAO NUTELLA 350 G",
         5.99,
@@ -229,6 +274,8 @@ const Registro_user = () => {
         50,
         "https://www.tia.com.ec/media/catalog/product/2/5/250951000_1.png_1725579111620.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg"
       );
+      producto24.urlImagen =
+        "https://www.tia.com.ec/media/catalog/product/2/5/250951000_1.png_1725579111620.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=200&width=200&canvas=200:200&format=jpeg";
       const lista = [
         producto1,
         producto2,

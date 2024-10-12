@@ -49,55 +49,57 @@ const Informes = ({ MostrarInformes, setMostrarInformes ,nombreUsuario}) => {
             </button>
           </div>
           <div className="contenedor-info-scroll">
-            {ListaUsuarios.slice(1).map((user) => (
-              <div className="contenedor-informe-user" key={user.cedula}>
-                <div className="datos-user-informe">
-                  <div className="nombre-user">
-                    <strong>Nombre cliente: </strong> {user.usuario} -{" "}
-                    <strong>Cedula cliente: </strong> {user.cedula}
+            {ListaUsuarios.length === 1? "No existen Usuarios":
+              (ListaUsuarios.slice(1).map((user) => (
+                <div className="contenedor-informe-user" key={user.cedula}>
+                  <div className="datos-user-informe">
+                    <div className="nombre-user">
+                      <strong>Nombre cliente: </strong> {user.usuario} -{" "}
+                      <strong>Cedula cliente: </strong> {user.cedula}
+                    </div>
+                    <div className="titulo-informe">
+                      <strong>Productos Comprados: </strong>#{" "}
+                      {user.productoComprados.length}{" "}
+                    </div>
+                    <div className="total-pagar">
+                      <strong>Total compra:</strong> $ {user.totalCompra}{" "}
+                    </div>
                   </div>
-                  <div className="titulo-informe">
-                    <strong>Productos Comprados: </strong>#{" "}
-                    {user.productoComprados.length}{" "}
-                  </div>
-                  <div className="total-pagar">
-                    <strong>Total compra:</strong> $ {user.totalCompra}{" "}
-                  </div>
-                </div>
-                <div className="productos-comprado-user">
-                  {user.productoComprados.length === 0
-                    ? "No existen productos comprados"
-                    : user.productoComprados.map((p) => (
-                        <div
-                          className="contenedor-productos1"
-                          key={p.idProducto}
-                        >
-                          <div className="contenedor-datos-producto2">
-                            <div className="nombre-producto">
-                              <strong>{p.nombreProducto}</strong>
+                  <div className="productos-comprado-user">
+                    {user.productoComprados.length === 0
+                      ? "No existen productos comprados"
+                      : user.productoComprados.map((p) => (
+                          <div
+                            className="contenedor-productos1"
+                            key={p.idProducto}
+                          >
+                            <div className="contenedor-datos-producto2">
+                              <div className="nombre-producto">
+                                <strong>{p.nombreProducto}</strong>
+                              </div>
+                              <div className="precio-proucto">
+                                Precio Unitario $ {p.precioProducto}
+                              </div>
+                              <div className="idProducto">
+                                Id Producto: {p.idProducto}
+                              </div>
+                              <div className="cantidad-producto">
+                                Cantidad Producto: # {p.cantidad}
+                              </div>
                             </div>
-                            <div className="precio-proucto">
-                              Precio Unitario $ {p.precioProducto}
-                            </div>
-                            <div className="idProducto">
-                              Id Producto: {p.idProducto}
-                            </div>
-                            <div className="cantidad-producto">
-                              Cantidad Producto: # {p.cantidad}
+                            <div className="contenedor-img-producto">
+                              <img
+                                className="img-product"
+                                src={p.imgProducto}
+                                alt="img-product"
+                              ></img>
                             </div>
                           </div>
-                          <div className="contenedor-img-producto">
-                            <img
-                              className="img-product"
-                              src={p.imgProducto}
-                              alt="img-product"
-                            ></img>
-                          </div>
-                        </div>
-                      ))}
+                        ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )))
+            }
           </div>
         </div>
       )}

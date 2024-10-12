@@ -70,51 +70,53 @@ const DevolucionInforme = ({
             </button>
           </div>
           <div className="contenedor-devolucion-clientes-scroll">
-            {ListaUsuarios.slice(1).map((user, index) => (
-              <div className="contenedordatos-devo" key={user.cedula}>
-                <div>
-                  <strong>Cliente: </strong> #{index + 1}
-                </div>
-                <div>
-                  <strong>Nombre Cliente: </strong> {user.usuario}
-                </div>
-                <div>
-                  <strong>Cedula Cliente: </strong>
-                  {user.cedula}
-                </div>
-                <div>
-                  <strong>Cantidad Productos:</strong>
-                  {user.productoComprados.length}
-                </div>
-                <div>
-                  <strong>Total Compra: </strong>
-                  {user.totalCompra}
-                </div>
-                <div>
-                  <strong>Estado devolución </strong>
-                  {user.devolucion}
-                </div>
-                {user.devolucion !== "No existe solicitud" && user.devolucion !== "Devolucion Aceptada" && user.devolucion !== "Devolucion Rechazada"  && (
-                  <div className="contenedor-btn-devolucion">
-                    <button
-                      class="button-devo2"
-                      onClick={() => aceptarSolicitud(user)}
-                    >
-                      Aceptar Solicitud
-                    </button>
-                    <button
-                      class="button-devo2"
-                      onClick={() => rechazarSolicitud(user)}
-                    >
-                      Rechazar Solicitud
-                    </button>
+            {ListaUsuarios.length === 1? "No existen usuarios":
+              (ListaUsuarios.slice(1).map((user, index) => (
+                <div className="contenedordatos-devo" key={user.cedula}>
+                  <div>
+                    <strong>Cliente: </strong> #{index + 1}
                   </div>
-                )}
-                <div className="confirmarSolicitud-informe">
-                  {user.devolucion}
+                  <div>
+                    <strong>Nombre Cliente: </strong> {user.usuario}
+                  </div>
+                  <div>
+                    <strong>Cedula Cliente: </strong>
+                    {user.cedula}
+                  </div>
+                  <div>
+                    <strong>Cantidad Productos:</strong>
+                    {user.productoComprados.length}
+                  </div>
+                  <div>
+                    <strong>Total Compra: </strong>
+                    {user.totalCompra}
+                  </div>
+                  <div>
+                    <strong>Estado devolución </strong>
+                    {user.devolucion}
+                  </div>
+                  {user.devolucion !== "No existe solicitud" && user.devolucion !== "Devolucion Aceptada" && user.devolucion !== "Devolucion Rechazada"  && (
+                    <div className="contenedor-btn-devolucion">
+                      <button
+                        class="button-devo2"
+                        onClick={() => aceptarSolicitud(user)}
+                      >
+                        Aceptar Solicitud
+                      </button>
+                      <button
+                        class="button-devo2"
+                        onClick={() => rechazarSolicitud(user)}
+                      >
+                        Rechazar Solicitud
+                      </button>
+                    </div>
+                  )}
+                  <div className="confirmarSolicitud-informe">
+                    {user.devolucion}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )))
+            }
           </div>
         </div>
       )}
